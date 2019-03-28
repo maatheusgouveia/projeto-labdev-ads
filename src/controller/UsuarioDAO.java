@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.sql.*;
@@ -13,7 +8,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.Usuario;
 import net.proteanit.sql.DbUtils;
-//import view.JF_Usuario;
+import view.TelaLogin;
+import view.TelaCadastro;
 
 public class UsuarioDAO {
 
@@ -29,11 +25,13 @@ public class UsuarioDAO {
 
         try {
             con = Conexao.conectar();
-            sql = "insert into Usuario (usu_login, usu_senha, usu_tipo)values(?,?,?)";
+            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, ?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
-            pst.setString(1, usuario.getUsu_login());
-            pst.setString(2, usuario.getUsu_senha());
-            pst.setInt(3, usuario.getUsu_tipo());
+            pst.setString(1, usuario.getEmail());
+            pst.setString(2, usuario.getSenha());
+            pst.setString(3, usuario.getNomeUsuario());
+            pst.setString(4, usuario.getDataCadastro());
+            pst.setInt(5, usuario.getIdTipoUsuario());
             pst.execute();
 
             JOptionPane.showMessageDialog(jfUsuario, "Cadastrado com Sucesso!");
@@ -50,12 +48,14 @@ public class UsuarioDAO {
     public void alterarUsuario(Usuario usuario, JFrame jfUsuario) {
          try {
             con = Conexao.conectar();
-            sql = "update Usuario set usu_login=?, usu_senha=?, usu_tipo=? where usu_id=?";
+            sql = "UPDATE Usuarios set Email = ?, Senha = ?, NomeUsuario = ?, DataCadastro = ?, idTipoUsuario = ? WHERE idUsuario = ?";
             pst = con.prepareStatement(sql);
-            pst.setString(1, usuario.getUsu_login());
-            pst.setString(2, usuario.getUsu_senha());
-            pst.setInt(3, usuario.getUsu_tipo());
-            pst.setInt(4, usuario.getUsu_id());
+            pst.setString(1, usuario.getEmail());
+            pst.setString(2, usuario.getSenha());
+            pst.setString(3, usuario.getNomeUsuario());
+            pst.setString(4, usuario.getDataCadastro());
+            pst.setInt(5, usuario.getIdTipoUsuario());
+            pst.setInt(6, usuario.getIdUsuario());
             pst.execute();
 
             JOptionPane.showMessageDialog(jfUsuario, "Alterado com Sucesso!");
@@ -74,7 +74,7 @@ public class UsuarioDAO {
              con = Conexao.conectar();
              sql = "delete from Usuario where usu_id = ?";
              pst=con.prepareStatement(sql);
-             pst.setInt(1, usuario.getUsu_id());
+             pst.setInt(1, usuario.getIdUsuario());
              
              if(JOptionPane.showConfirmDialog(jfUsuario, "Deseja Deletar?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION)==0){
                  pst.execute();
