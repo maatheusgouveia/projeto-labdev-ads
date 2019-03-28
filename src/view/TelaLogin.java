@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.UsuarioDAO;
 import view.TelaCadastro;
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,8 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
     }
+    
+    UsuarioDAO usuarioDao = new UsuarioDAO();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,8 +93,8 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(81, 81, 81)
+                        .addComponent(btnLimpar))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel3)
                         .addComponent(jLabel2)
@@ -141,6 +144,7 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } 
         else {
+            usuarioDao.login(txtEmail, txtSenha, this);
             TelaInicial Home = new TelaInicial();
             Home.setVisible(true);
             this.setVisible(false);

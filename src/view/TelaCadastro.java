@@ -1,7 +1,9 @@
 package view;
 
 
+import controller.UsuarioDAO;
 import javax.swing.JOptionPane;
+import model.Usuario;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +23,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     public TelaCadastro() {
         initComponents();
     }
+    
+    UsuarioDAO usuarioDao = new UsuarioDAO();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,7 +163,12 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastroInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroInicialActionPerformed
         TelaLogin Login = new TelaLogin();
-        JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
+        Usuario usuario = new Usuario();
+        //JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
+        usuario.setEmail(txtEmail.getText());
+        usuario.setSenha(txtSenha.getText());
+        usuario.setNomeUsuario(txtNomeUsuario.getText());
+        usuarioDao.cadastrarUsuario(usuario, this);
         Login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastroInicialActionPerformed

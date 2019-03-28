@@ -21,17 +21,15 @@ public class UsuarioDAO {
 
     //Métodos
     //SALVAR
-    public void salvarUsuario(Usuario usuario, JFrame jfUsuario) {
+    public void cadastrarUsuario(Usuario usuario, JFrame jfUsuario) {
 
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, ?, ?, CURRENT_TIMESTAMP, 1)";
             pst = con.prepareStatement(sql);
             pst.setString(1, usuario.getEmail());
             pst.setString(2, usuario.getSenha());
-            pst.setString(3, usuario.getNomeUsuario());
-            pst.setString(4, usuario.getDataCadastro());
-            pst.setInt(5, usuario.getIdTipoUsuario());
+            pst.setString(3, usuario.getNomeUsuario());                        
             pst.execute();
 
             JOptionPane.showMessageDialog(jfUsuario, "Cadastrado com Sucesso!");
@@ -72,13 +70,13 @@ public class UsuarioDAO {
             
         try {
              con = Conexao.conectar();
-             sql = "delete from Usuario where usu_id = ?";
+             sql = "DELETE FROM Usuarios WHERE idUsuario = ?";
              pst=con.prepareStatement(sql);
              pst.setInt(1, usuario.getIdUsuario());
              
              if(JOptionPane.showConfirmDialog(jfUsuario, "Deseja Deletar?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION)==0){
                  pst.execute();
-                 JOptionPane.showMessageDialog(jfUsuario, "Deletado com Sucesso!");
+                 JOptionPane.showMessageDialog(jfUsuario, "Excluido com Sucesso!");
                  Conexao.desconectar();
              }
              
@@ -95,7 +93,7 @@ public class UsuarioDAO {
         
         try {
             con = Conexao.conectar();
-            sql = "select usu_id as ID, usu_login as Login, usu_tipo as Tipo from Usuario where usu_login like ?";
+            sql = "SELECT idUsuario AS ID, Email, idTipoUsuario AS Tipo, NomeUsuario AS NOME, DataCriacao FROM Usuarios WHERE NomeUsuario LIKE ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, txtPesquisa.getText()+"%");
             rs=pst.executeQuery();
@@ -104,23 +102,21 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(jfUsuario, "Erro ao consultar: "+e);
         }
-
     }
 
     //CONSULTAR POR ID
-    public void consultarUsuarioID(int codUsuario,JTextField txtid, JTextField txtlogin, JComboBox tipo, JFrame jfUsuario) {
-        
+    public void consultarUsuarioID(int codUsuario,JTextField txtid, JTextField txtlogin, JComboBox tipo, JFrame jfUsuario) {        
         try {
             con = Conexao.conectar();
-            sql = "select * from Usuario where usu_id=?";
+            sql = "SELECT * FROM Usuarios WHERE idUsuario=?";
             pst = con.prepareStatement(sql);
             pst.setInt(1, codUsuario);
             rs=pst.executeQuery();
             
             if(rs.next()){
-                txtid.setText(String.valueOf(rs.getInt("usu_id")));
-                txtlogin.setText(rs.getString("usu_login"));
-                tipo.setSelectedIndex(rs.getInt("usu_tipo"));
+                txtid.setText(String.valueOf(rs.getInt("idUsuario")));
+                txtlogin.setText(rs.getString("Email"));
+                tipo.setSelectedIndex(rs.getInt("idTipoUsuario"));
             }else{
                 JOptionPane.showMessageDialog(jfUsuario, "Nenhum Registro Encontrado");
             }
@@ -128,7 +124,26 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(jfUsuario, "Erro ao consultar: "+e);
         }
-
     }
-
+    
+     //CONSULTAR POR ID
+    public void login(JTextField txtEmail, JTextField txtSenha, JFrame jfUsuario) {        
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txtEmail.getText());
+            pst.setString(2, txtSenha.getText());
+            rs=pst.executeQuery();
+            
+            if(rs.next()){                
+                JOptionPane.showMessageDialog(jfUsuario, "Bem Vindo, " + rs.getString("NomeUsuario"));
+            }else{
+                JOptionPane.showMessageDialog(jfUsuario, "Email ou senha incorreta");
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jfUsuario, "Erro ao consultar: "+e);
+        }
+    }
 }
