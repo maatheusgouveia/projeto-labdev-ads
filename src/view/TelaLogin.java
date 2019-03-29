@@ -125,6 +125,7 @@ public class TelaLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
@@ -139,13 +140,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
         if (txtEmail.getText().isEmpty() || txtSenha.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } 
         else {
-            usuarioDao.login(txtEmail, txtSenha, this);
-            TelaInicial Home = new TelaInicial();
+            usuarioDao.login(txtEmail, txtSenha, this, telaPrincipal);
+            TelaPrincipal Home = new TelaPrincipal();
             Home.setVisible(true);
             this.setVisible(false);
         }

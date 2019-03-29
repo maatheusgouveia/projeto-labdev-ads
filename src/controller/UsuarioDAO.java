@@ -25,7 +25,7 @@ public class UsuarioDAO {
 
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, ?, ?, CURRENT_TIMESTAMP, 1)";
+            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, md5(?), ?, CURRENT_TIMESTAMP, 1)";
             pst = con.prepareStatement(sql);
             pst.setString(1, usuario.getEmail());
             pst.setString(2, usuario.getSenha());
@@ -127,23 +127,25 @@ public class UsuarioDAO {
     }
     
      //CONSULTAR POR ID
-    public void login(JTextField txtEmail, JTextField txtSenha, JFrame jfUsuario) {        
+    public void login(JTextField txtEmail, JTextField txtSenha, JFrame jfLogin, JFrame jfPrincipal) {        
         try {
             con = Conexao.conectar();
-            sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = ?";
+            sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = md5(?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, txtEmail.getText());
             pst.setString(2, txtSenha.getText());
             rs=pst.executeQuery();
             
             if(rs.next()){                
-                JOptionPane.showMessageDialog(jfUsuario, "Bem Vindo, " + rs.getString("NomeUsuario"));
+                JOptionPane.showMessageDialog(jfLogin, "Bem Vindo, " + rs.getString("NomeUsuario"));
+                jfLogin.setVisible(false);
+                jfPrincipal.setVisible(true);
             }else{
-                JOptionPane.showMessageDialog(jfUsuario, "Email ou senha incorreta");
+                JOptionPane.showMessageDialog(jfLogin, "Email ou senha incorreta");
             }
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(jfUsuario, "Erro ao consultar: "+e);
+            JOptionPane.showMessageDialog(jfLogin, "Erro ao consultar: "+e);
         }
     }
 }
