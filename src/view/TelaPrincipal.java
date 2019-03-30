@@ -1,9 +1,15 @@
 package view;
 
+import model.Usuario;
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
         initComponents();
+    }
+    
+    public void receberDados(Usuario usuario) {
+        lblBemVindo.setText("Bem vindo, " + usuario.getNomeUsuario());
     }
 
     /**
@@ -15,14 +21,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblBemVindo = new javax.swing.JLabel();
         btnConfiguracoes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel1.setText("Bem Vindo!");
+        lblBemVindo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblBemVindo.setText("Bem Vindo, Matheus!");
 
         btnConfiguracoes.setText("Configurações");
         btnConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
@@ -43,17 +49,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jLabel1)
-                        .addGap(0, 287, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnConfiguracoes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSair)))
+                .addContainerGap()
+                .addComponent(btnConfiguracoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addComponent(btnSair)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(lblBemVindo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +67,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnSair)
                     .addComponent(btnConfiguracoes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblBemVindo)
                 .addContainerGap(304, Short.MAX_VALUE))
         );
 
@@ -72,11 +76,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracoesActionPerformed
-        // TODO add your handling code here:
+        TelaConfiguracoes telaConfiguracoes = new TelaConfiguracoes();
+        telaConfiguracoes.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnConfiguracoesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_btnSairActionPerformed
 
     /**
@@ -118,6 +127,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfiguracoes;
     private javax.swing.JButton btnSair;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblBemVindo;
     // End of variables declaration//GEN-END:variables
 }

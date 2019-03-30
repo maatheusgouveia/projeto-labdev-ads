@@ -145,9 +145,8 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } 
         else {
-            usuarioDao.login(txtEmail, txtSenha, this, telaPrincipal);
-            TelaPrincipal Home = new TelaPrincipal();
-            Home.setVisible(true);
+            usuarioDao.login(txtEmail, txtSenha, this, telaPrincipal);            
+            telaPrincipal.setVisible(true);
             this.setVisible(false);
         }
         

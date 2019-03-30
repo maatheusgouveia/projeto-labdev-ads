@@ -8,8 +8,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.Usuario;
 import net.proteanit.sql.DbUtils;
-import view.TelaLogin;
-import view.TelaCadastro;
+import view.TelaPrincipal;
 
 public class UsuarioDAO {
 
@@ -43,10 +42,10 @@ public class UsuarioDAO {
     }
 
     //ALTERAR
-    public void alterarUsuario(Usuario usuario, JFrame jfUsuario) {
+    public void alterarDadosUsuario(Usuario usuario, JFrame jfUsuario) {
          try {
             con = Conexao.conectar();
-            sql = "UPDATE Usuarios set Email = ?, Senha = ?, NomeUsuario = ?, DataCadastro = ?, idTipoUsuario = ? WHERE idUsuario = ?";
+            sql = "UPDATE Usuarios SET Email = ?, NomeUsuario = ? WHERE idUsuario = ?";
             pst = con.prepareStatement(sql);
             pst.setString(1, usuario.getEmail());
             pst.setString(2, usuario.getSenha());
@@ -64,9 +63,26 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(jfUsuario, "Erro ao Alterar: " + e);
         }
     }
+    
+    public void alterarSenhaUsuario(Usuario usuario, JFrame jfUsuario) {
+         try {
+            con = Conexao.conectar();
+            sql = "UPDATE Usuarios SET Senha = ? WHERE idUsuario = ?";
+            pst = con.prepareStatement(sql);            
+            pst.setString(1, usuario.getSenha());            
+            pst.execute();
+
+            JOptionPane.showMessageDialog(jfUsuario, "Alterado com Sucesso!");
+
+            Conexao.desconectar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jfUsuario, "Erro ao Alterar: " + e);
+        }
+    }
 
     //APAGAR
-    public void apagarUsuario(Usuario usuario, JFrame jfUsuario) {
+    public void apagarUsuario(Usuario usuario, JFrame jfConfig) {
             
         try {
              con = Conexao.conectar();
@@ -74,14 +90,14 @@ public class UsuarioDAO {
              pst=con.prepareStatement(sql);
              pst.setInt(1, usuario.getIdUsuario());
              
-             if(JOptionPane.showConfirmDialog(jfUsuario, "Deseja Deletar?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION)==0){
+             if(JOptionPane.showConfirmDialog(jfConfig, "Deseja Deletar?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION) == 0){
                  pst.execute();
-                 JOptionPane.showMessageDialog(jfUsuario, "Excluido com Sucesso!");
+                 JOptionPane.showMessageDialog(jfConfig, "Excluido com Sucesso!");
                  Conexao.desconectar();
              }
              
         } catch (Exception e) {
-             JOptionPane.showConfirmDialog(jfUsuario, "Erro ao deletar: "+e);
+             JOptionPane.showConfirmDialog(jfConfig, "Erro ao deletar: "+e);
         }
           
          
@@ -127,7 +143,7 @@ public class UsuarioDAO {
     }
     
      //CONSULTAR POR ID
-    public void login(JTextField txtEmail, JTextField txtSenha, JFrame jfLogin, JFrame jfPrincipal) {        
+    public void login(JTextField txtEmail, JTextField txtSenha, JFrame jfLogin, TelaPrincipal jfPrincipal) {        
         try {
             con = Conexao.conectar();
             sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = md5(?)";
@@ -136,10 +152,16 @@ public class UsuarioDAO {
             pst.setString(2, txtSenha.getText());
             rs=pst.executeQuery();
             
-            if(rs.next()){                
-                JOptionPane.showMessageDialog(jfLogin, "Bem Vindo, " + rs.getString("NomeUsuario"));
+            if(rs.next()){
+                Usuario usuario = new Usuario();                
                 jfLogin.setVisible(false);
                 jfPrincipal.setVisible(true);
+                usuario.setNomeUsuario(rs.getString("NomeUsuario"));
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setIdTipoUsuario(rs.getInt("idTipoUsuario"));
+                usuario.setEmail(rs.getString("Email"));
+                usuario.setDataCadastro(rs.getString("DataCadastro"));
+                jfPrincipal.receberDados(usuario);                
             }else{
                 JOptionPane.showMessageDialog(jfLogin, "Email ou senha incorreta");
             }
