@@ -47,12 +47,9 @@ public class UsuarioDAO {
             con = Conexao.conectar();
             sql = "UPDATE Usuarios SET Email = ?, NomeUsuario = ? WHERE idUsuario = ?";
             pst = con.prepareStatement(sql);
-            pst.setString(1, usuario.getEmail());
-            pst.setString(2, usuario.getSenha());
-            pst.setString(3, usuario.getNomeUsuario());
-            pst.setString(4, usuario.getDataCadastro());
-            pst.setInt(5, usuario.getIdTipoUsuario());
-            pst.setInt(6, usuario.getIdUsuario());
+            pst.setString(1, usuario.getEmail());            
+            pst.setString(2, usuario.getNomeUsuario());            
+            pst.setInt(3, usuario.getIdUsuario());
             pst.execute();
 
             JOptionPane.showMessageDialog(jfUsuario, "Alterado com Sucesso!");

@@ -3,13 +3,16 @@ package view;
 import model.Usuario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
+    Usuario dadosUsuario;
+    
     public TelaPrincipal() {
         initComponents();
     }
     
     public void receberDados(Usuario usuario) {
         lblBemVindo.setText("Bem vindo, " + usuario.getNomeUsuario());
+        dadosUsuario = usuario;
     }
 
     /**
