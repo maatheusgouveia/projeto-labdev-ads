@@ -169,6 +169,8 @@ public class UsuarioDAO {
                 usuario.setIdTipoUsuario(rs.getInt("idTipoUsuario"));
                 usuario.setEmail(rs.getString("Email"));
                 usuario.setDataCadastro(rs.getString("DataCadastro"));
+                LogsDAO logsDao = new LogsDAO();
+                logsDao.cadastrarLog("Entrou", usuario.getIdUsuario(), jfPrincipal);
                 jfPrincipal.receberDados(usuario);                
             }else{
                 JOptionPane.showMessageDialog(jfLogin, "Email ou senha incorreta");

@@ -1,6 +1,6 @@
 package view;
 
-import javax.swing.JOptionPane;
+import controller.LogsDAO;
 import model.Usuario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -80,14 +80,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracoesActionPerformed
-        TelaConfiguracoes telaConfiguracoes = new TelaConfiguracoes();
-        telaConfiguracoes.receberDados(dadosUsuario);
-        telaConfiguracoes.setVisible(true);
-        this.setVisible(false);
+        if (dadosUsuario.getIdTipoUsuario() == 1) {
+            PainelAdministrativo painel = new PainelAdministrativo();
+            painel.receberDados(dadosUsuario);
+            painel.setVisible(true);
+            this.setVisible(false);
+            
+        } else {
+            TelaConfiguracoes telaConfiguracoes = new TelaConfiguracoes();
+            telaConfiguracoes.receberDados(dadosUsuario);
+            telaConfiguracoes.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnConfiguracoesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         TelaLogin telaLogin = new TelaLogin();
+        LogsDAO logsDao = new LogsDAO();
+        logsDao.cadastrarLog("Saiu", dadosUsuario.getIdUsuario(), this);
         telaLogin.setVisible(true);
         this.setVisible(false);
         
