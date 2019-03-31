@@ -18,6 +18,7 @@ public class UsuarioDAO {
     String sql;
     PreparedStatement pst;
     ResultSet rs;
+    LogsDAO logsDao = new LogsDAO();
 
     //Métodos
     public void cadastrarUsuario(Usuario usuario, JFrame jfUsuario) {
@@ -27,9 +28,10 @@ public class UsuarioDAO {
             pst = con.prepareStatement(sql);
             pst.setString(1, usuario.getEmail());
             pst.setString(2, usuario.getSenha());
-            pst.setString(3, usuario.getNomeUsuario());                        
+            pst.setString(3, usuario.getNomeUsuario());                       
             pst.execute();
-
+            logsDao.cadastrarLog("Se cadastrou", usuario.getNomeUsuario());
+            
             JOptionPane.showMessageDialog(jfUsuario, "Cadastrado com Sucesso!");
 
             Conexao.desconectar();
@@ -170,7 +172,7 @@ public class UsuarioDAO {
                 usuario.setEmail(rs.getString("Email"));
                 usuario.setDataCadastro(rs.getString("DataCadastro"));
                 LogsDAO logsDao = new LogsDAO();
-                logsDao.cadastrarLog("Entrou", usuario.getIdUsuario(), jfPrincipal);
+                logsDao.cadastrarLog("Entrou", usuario.getNomeUsuario());
                 jfPrincipal.receberDados(usuario);                
             }else{
                 JOptionPane.showMessageDialog(jfLogin, "Email ou senha incorreta");

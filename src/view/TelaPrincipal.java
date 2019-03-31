@@ -34,7 +34,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblBemVindo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         lblBemVindo.setText("Bem Vindo, Matheus!");
 
-        btnConfiguracoes.setText("Configurações");
+        btnConfiguracoes.setText("Menu");
         btnConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguracoesActionPerformed(evt);
@@ -55,7 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnConfiguracoes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 577, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -97,7 +97,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         TelaLogin telaLogin = new TelaLogin();
         LogsDAO logsDao = new LogsDAO();
-        logsDao.cadastrarLog("Saiu", dadosUsuario.getIdUsuario(), this);
+        logsDao.cadastrarLog("Saiu", dadosUsuario.getNomeUsuario());
         telaLogin.setVisible(true);
         this.setVisible(false);
         

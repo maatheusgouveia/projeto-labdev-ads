@@ -25,7 +25,7 @@ public class LogsDAO {
     public void carregarLogs(JTable tabLogs, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT Usuarios.idUsuario, NomeUsuario, Acao, DataHora FROM Logs INNER JOIN Usuarios ON Logs.idUsuario = Usuarios.idUsuario";
+            sql = "SELECT NomeUsuario, Acao, DataHora FROM Logs";
             pst = con.prepareStatement(sql);            
             rs=pst.executeQuery();
             tabLogs.setModel(DbUtils.resultSetToTableModel(rs));
@@ -35,19 +35,19 @@ public class LogsDAO {
         }
     }
     
-    public void cadastrarLog(String Acao, int idUsuario, JFrame jfLogs) {
+    public void cadastrarLog(String Acao, String NomeUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Logs (Acao, idUsuario) VALUES(? , ?)";
+            sql = "INSERT INTO Logs (Acao, NomeUsuario) VALUES(? , ?)";
             pst = con.prepareStatement(sql);   
             pst.setString(1, Acao);
-            pst.setInt(2, idUsuario);
+            pst.setString(2, NomeUsuario);
             pst.execute();            
 
             Conexao.desconectar();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(jfLogs, "Erro ao salvar log: " + e);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar log: " + e);
         }
     }
     
