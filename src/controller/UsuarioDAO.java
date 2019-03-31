@@ -24,7 +24,7 @@ public class UsuarioDAO {
 
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, md5(?), ?, CURRENT_TIMESTAMP, 1)";
+            sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, md5(?), ?, CURRENT_TIMESTAMP, 2)";
             pst = con.prepareStatement(sql);
             pst.setString(1, usuario.getEmail());
             pst.setString(2, usuario.getSenha());

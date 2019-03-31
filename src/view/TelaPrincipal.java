@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -13,6 +14,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void receberDados(Usuario usuario) {
         lblBemVindo.setText("Bem vindo, " + usuario.getNomeUsuario());
         dadosUsuario = usuario;
+        JOptionPane.showMessageDialog(null, dadosUsuario.getEmail() + dadosUsuario.getIdTipoUsuario());
     }
 
     /**
