@@ -13,8 +13,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     public void receberDados(Usuario usuario) {
         lblBemVindo.setText("Bem vindo, " + usuario.getNomeUsuario());
-        dadosUsuario = usuario;
-        JOptionPane.showMessageDialog(null, dadosUsuario.getEmail() + dadosUsuario.getIdTipoUsuario());
+        dadosUsuario = usuario;       
     }
 
     /**
@@ -82,6 +81,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracoesActionPerformed
         TelaConfiguracoes telaConfiguracoes = new TelaConfiguracoes();
+        telaConfiguracoes.receberDados(dadosUsuario);
         telaConfiguracoes.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnConfiguracoesActionPerformed

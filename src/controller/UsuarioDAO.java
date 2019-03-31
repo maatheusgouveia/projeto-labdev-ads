@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.Usuario;
 import net.proteanit.sql.DbUtils;
+import view.TelaLogin;
 import view.TelaPrincipal;
 
 public class UsuarioDAO {
@@ -19,9 +20,7 @@ public class UsuarioDAO {
     ResultSet rs;
 
     //Métodos
-    //SALVAR
     public void cadastrarUsuario(Usuario usuario, JFrame jfUsuario) {
-
         try {
             con = Conexao.conectar();
             sql = "INSERT INTO Usuarios (Email, Senha, NomeUsuario, DataCadastro, idTipoUsuario) VALUES(?, md5(?), ?, CURRENT_TIMESTAMP, 2)";
@@ -50,7 +49,7 @@ public class UsuarioDAO {
             pst.setString(1, usuario.getEmail());            
             pst.setString(2, usuario.getNomeUsuario());            
             pst.setInt(3, usuario.getIdUsuario());
-            pst.execute();
+            pst.execute();            
 
             JOptionPane.showMessageDialog(jfUsuario, "Alterado com Sucesso!");
 
@@ -61,15 +60,27 @@ public class UsuarioDAO {
         }
     }
     
-    public void alterarSenhaUsuario(Usuario usuario, JFrame jfUsuario) {
+    public void alterarSenhaUsuario(Usuario usuario, JFrame jfUsuario, JTextField txtNovaSenha) {
          try {
             con = Conexao.conectar();
-            sql = "UPDATE Usuarios SET Senha = ? WHERE idUsuario = ?";
+            sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = md5(?)";
             pst = con.prepareStatement(sql);            
-            pst.setString(1, usuario.getSenha());            
-            pst.execute();
+            pst.setString(1, usuario.getEmail());
+            pst.setString(2, usuario.getSenha());
+            rs = pst.executeQuery();
+            //verificar se a senha está correta, caso a consulta traga resultados a senha será alterada
+            
+            if(rs.next()){
+                sql = "UPDATE Usuarios SET Senha = md5(?) WHERE idUsuario = ?";
+                pst = con.prepareStatement(sql);                            
+                pst.setString(1, txtNovaSenha.getText());
+                pst.setInt(2, usuario.getIdUsuario());
+                pst.execute();
 
-            JOptionPane.showMessageDialog(jfUsuario, "Alterado com Sucesso!");
+                JOptionPane.showMessageDialog(jfUsuario, "Senha alterada com Sucesso!\n Não esqueça de utilizá-la na próxima vez que fizer login");
+            } else {
+                JOptionPane.showMessageDialog(jfUsuario, "Senha Incorreta");
+            }                                 
 
             Conexao.desconectar();
 
@@ -87,17 +98,18 @@ public class UsuarioDAO {
              pst=con.prepareStatement(sql);
              pst.setInt(1, usuario.getIdUsuario());
              
-             if(JOptionPane.showConfirmDialog(jfConfig, "Deseja Deletar?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION) == 0){
-                 pst.execute();
-                 JOptionPane.showMessageDialog(jfConfig, "Excluido com Sucesso!");
-                 Conexao.desconectar();
+             if(JOptionPane.showConfirmDialog(jfConfig, "Tem certeza que deseja excluir sua conta?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION) == 0){
+                pst.execute();
+                TelaLogin telaLogin = new TelaLogin();                
+                JOptionPane.showMessageDialog(jfConfig, "Sentiremos sua falta :(");
+                Conexao.desconectar();
+                telaLogin.setVisible(true);
+                jfConfig.setVisible(false);
              }
              
         } catch (Exception e) {
              JOptionPane.showConfirmDialog(jfConfig, "Erro ao deletar: "+e);
-        }
-          
-         
+        }                   
 
     }
 
@@ -139,7 +151,6 @@ public class UsuarioDAO {
         }
     }
     
-     //CONSULTAR POR ID
     public void login(JTextField txtEmail, JTextField txtSenha, JFrame jfLogin, TelaPrincipal jfPrincipal) {        
         try {
             con = Conexao.conectar();
@@ -147,7 +158,7 @@ public class UsuarioDAO {
             pst = con.prepareStatement(sql);
             pst.setString(1, txtEmail.getText());
             pst.setString(2, txtSenha.getText());
-            rs=pst.executeQuery();
+            rs = pst.executeQuery();
             
             if(rs.next()){
                 Usuario usuario = new Usuario();                

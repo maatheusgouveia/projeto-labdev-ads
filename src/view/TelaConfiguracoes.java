@@ -1,5 +1,7 @@
 package view;
 
+import controller.UsuarioDAO;
+import javax.swing.JOptionPane;
 import model.Usuario;
 
 /**
@@ -15,8 +17,13 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
         initComponents();
     }
     
+    Usuario dadosUsuario;
+    
     public void receberDados(Usuario usuario) {
-        
+        txtEditaEmail.setText(usuario.getEmail());
+        txtEditaNomeUsuario.setText(usuario.getNomeUsuario());
+        txtDataCadastro.setText(usuario.getDataCadastro());
+        dadosUsuario = usuario;
     }
 
     /**
@@ -35,10 +42,10 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtEditarNomeUsuario = new javax.swing.JTextField();
-        txtEditarEmail = new javax.swing.JTextField();
+        txtEditaNomeUsuario = new javax.swing.JTextField();
+        txtEditaEmail = new javax.swing.JTextField();
         txtDataCadastro = new javax.swing.JTextField();
-        txtEditaSenha = new javax.swing.JPasswordField();
+        txtSenhaAtual = new javax.swing.JPasswordField();
         txtNovaSenha = new javax.swing.JPasswordField();
         txtConfirmaNovaSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
@@ -48,6 +55,9 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
         btnRedefinirCampos = new javax.swing.JButton();
         btnAlterarSenha = new javax.swing.JButton();
         btnRedefinirCamposSenha = new javax.swing.JButton();
+        btnExluirConta = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -86,21 +96,53 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
         jLabel9.setText("Senha Atual:");
 
         btnEditarDados.setText("Salvar");
+        btnEditarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarDadosActionPerformed(evt);
+            }
+        });
 
         btnRedefinirCampos.setText("Redefinir");
+        btnRedefinirCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedefinirCamposActionPerformed(evt);
+            }
+        });
 
         btnAlterarSenha.setText("Salvar");
+        btnAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarSenhaActionPerformed(evt);
+            }
+        });
 
         btnRedefinirCamposSenha.setText("Redefinir");
+        btnRedefinirCamposSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedefinirCamposSenhaActionPerformed(evt);
+            }
+        });
+
+        btnExluirConta.setText("Exluir minha conta");
+        btnExluirConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExluirContaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Sair");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,8 +151,8 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(jLabel4)
                         .addComponent(jLabel6)
-                        .addComponent(txtEditarNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(txtEditarEmail)
+                        .addComponent(txtEditaNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(txtEditaEmail)
                         .addComponent(txtDataCadastro))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEditarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,16 +169,37 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnRedefinirCamposSenha))
                         .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtEditaSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtSenhaAtual, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtNovaSenha, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtConfirmaNovaSenha, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(47, 47, 47))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(btnExluirConta)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -147,15 +210,15 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEditarNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEditaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEditaNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenhaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEditarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEditaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -171,12 +234,61 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
                     .addComponent(btnRedefinirCamposSenha)
                     .addComponent(btnEditarDados)
                     .addComponent(btnRedefinirCampos))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExluirConta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEditarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDadosActionPerformed
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        Usuario usuario = new Usuario();
+        usuario.setEmail(txtEditaEmail.getText());
+        usuario.setNomeUsuario(txtEditaNomeUsuario.getText());
+        usuario.setIdUsuario(dadosUsuario.getIdUsuario());
+        usuarioDao.alterarDadosUsuario(usuario, this);
+    }//GEN-LAST:event_btnEditarDadosActionPerformed
+
+    private void btnRedefinirCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedefinirCamposActionPerformed
+        txtEditaEmail.setText(dadosUsuario.getEmail());
+        txtEditaNomeUsuario.setText(dadosUsuario.getNomeUsuario());
+        txtDataCadastro.setText(dadosUsuario.getDataCadastro());
+    }//GEN-LAST:event_btnRedefinirCamposActionPerformed
+
+    private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        Usuario usuario = new Usuario();
+        usuario.setSenha(txtSenhaAtual.getText());
+        usuario.setEmail(dadosUsuario.getEmail());
+        usuario.setIdUsuario(dadosUsuario.getIdUsuario());
+        if (txtNovaSenha.getText().equals(txtConfirmaNovaSenha.getText())) {
+            usuarioDao.alterarSenhaUsuario(usuario, this, txtNovaSenha);
+        } else {
+            JOptionPane.showMessageDialog(null, "As senhas devem ser iguais");
+        }
+    }//GEN-LAST:event_btnAlterarSenhaActionPerformed
+
+    private void btnExluirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExluirContaActionPerformed
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        Usuario usuario = new Usuario();      
+        usuario.setIdUsuario(dadosUsuario.getIdUsuario());
+        usuarioDao.apagarUsuario(usuario, this);        
+    }//GEN-LAST:event_btnExluirContaActionPerformed
+
+    private void btnRedefinirCamposSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedefinirCamposSenhaActionPerformed
+        txtSenhaAtual.setText("");
+        txtNovaSenha.setText("");
+        txtConfirmaNovaSenha.setText("");
+    }//GEN-LAST:event_btnRedefinirCamposSenhaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,18 +318,19 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaConfiguracoes().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaConfiguracoes().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarSenha;
     private javax.swing.JButton btnEditarDados;
+    private javax.swing.JButton btnExluirConta;
     private javax.swing.JButton btnRedefinirCampos;
     private javax.swing.JButton btnRedefinirCamposSenha;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -230,9 +343,9 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField txtConfirmaNovaSenha;
     private javax.swing.JTextField txtDataCadastro;
-    private javax.swing.JPasswordField txtEditaSenha;
-    private javax.swing.JTextField txtEditarEmail;
-    private javax.swing.JTextField txtEditarNomeUsuario;
+    private javax.swing.JTextField txtEditaEmail;
+    private javax.swing.JTextField txtEditaNomeUsuario;
     private javax.swing.JPasswordField txtNovaSenha;
+    private javax.swing.JPasswordField txtSenhaAtual;
     // End of variables declaration//GEN-END:variables
 }
