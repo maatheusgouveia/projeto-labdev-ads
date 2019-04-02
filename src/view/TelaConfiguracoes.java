@@ -264,10 +264,14 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
         usuario.setSenha(txtSenhaAtual.getText());
         usuario.setEmail(dadosUsuario.getEmail());
         usuario.setIdUsuario(dadosUsuario.getIdUsuario());
-        if (txtNovaSenha.getText().equals(txtConfirmaNovaSenha.getText())) {
-            usuarioDao.alterarSenhaUsuario(usuario, this, txtNovaSenha);
+        if (txtNovaSenha.getText().length() >= 6) {
+            if (txtNovaSenha.getText().equals(txtConfirmaNovaSenha.getText())) {
+                usuarioDao.alterarSenhaUsuario(usuario, this, txtNovaSenha);
+            } else {
+                JOptionPane.showMessageDialog(null, "As senhas devem ser iguais");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "As senhas devem ser iguais");
+            JOptionPane.showMessageDialog(this, "A senha deve ter pelo menos 6 caracteres");
         }
     }//GEN-LAST:event_btnAlterarSenhaActionPerformed
 
@@ -286,6 +290,7 @@ public class TelaConfiguracoes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.receberDados(dadosUsuario);
         telaPrincipal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

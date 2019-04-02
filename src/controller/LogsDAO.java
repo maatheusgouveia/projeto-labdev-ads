@@ -25,7 +25,7 @@ public class LogsDAO {
     public void carregarLogs(JTable tabLogs, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT NomeUsuario, Acao, DataHora FROM Logs";
+            sql = "SELECT NomeUsuario, Acao, DataHora FROM Logs INNER JOIN Usuarios ON Logs.idUsuario = Usuarios.idUsuario";
             pst = con.prepareStatement(sql);            
             rs=pst.executeQuery();
             tabLogs.setModel(DbUtils.resultSetToTableModel(rs));
@@ -35,13 +35,13 @@ public class LogsDAO {
         }
     }
     
-    public void cadastrarLog(String Acao, String NomeUsuario) {
+    public void cadastrarLog(String Acao, int idUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Logs (Acao, NomeUsuario) VALUES(? , ?)";
+            sql = "INSERT INTO Logs (Acao, idUsuario) VALUES(? , ?)";
             pst = con.prepareStatement(sql);   
             pst.setString(1, Acao);
-            pst.setString(2, NomeUsuario);
+            pst.setInt(2, idUsuario);
             pst.execute();            
 
             Conexao.desconectar();

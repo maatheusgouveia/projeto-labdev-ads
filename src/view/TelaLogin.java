@@ -119,9 +119,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrar)
                     .addComponent(btnLimpar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnCadastro)
-                .addContainerGap())
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -143,8 +143,7 @@ public class TelaLogin extends javax.swing.JFrame {
         TelaPrincipal telaPrincipal = new TelaPrincipal();
         if (txtEmail.getText().isEmpty() || txtSenha.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } 
-        else {
+        } else {
             usuarioDao.login(txtEmail, txtSenha, this, telaPrincipal);            
             telaPrincipal.setVisible(true);
             this.setVisible(false);

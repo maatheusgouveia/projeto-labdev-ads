@@ -13,7 +13,7 @@ public class Logs {
     private int idLog;
     private String Acao;
     private String DataHora;
-    private String NomeUsuario;
+    private int idUsuario;
 
     /**
      * @return the idLog
@@ -60,14 +60,14 @@ public class Logs {
     /**
      * @return the idUsuario
      */
-    public String getNomeUsuario() {
-        return NomeUsuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
     /**
-     * @param NomeUsuario the NomeUsuario to set
+     * @param idUsuario the idUsuario to set
      */
-    public void setNomeUsuario(String NomeUsuario) {
-        this.NomeUsuario = NomeUsuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -30,7 +30,7 @@ public class UsuarioDAO {
             pst.setString(2, usuario.getSenha());
             pst.setString(3, usuario.getNomeUsuario());                       
             pst.execute();
-            logsDao.cadastrarLog("Se cadastrou", usuario.getNomeUsuario());
+            logsDao.cadastrarLog("Um usuario foi cadastrado", usuario.getIdUsuario());
             
             JOptionPane.showMessageDialog(jfUsuario, "Cadastrado com Sucesso!");
 
@@ -69,6 +69,12 @@ public class UsuarioDAO {
             pst = con.prepareStatement(sql);            
             pst.setString(1, usuario.getEmail());
             pst.setString(2, usuario.getSenha());
+            
+            if (usuario.getSenha().isEmpty()) {
+                JOptionPane.showMessageDialog(jfUsuario, "Digite sua senha atual para continuar");
+                return;
+            }
+            
             rs = pst.executeQuery();
             //verificar se a senha está correta, caso a consulta traga resultados a senha será alterada
             
@@ -170,9 +176,8 @@ public class UsuarioDAO {
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setIdTipoUsuario(rs.getInt("idTipoUsuario"));
                 usuario.setEmail(rs.getString("Email"));
-                usuario.setDataCadastro(rs.getString("DataCadastro"));
-                LogsDAO logsDao = new LogsDAO();
-                logsDao.cadastrarLog("Entrou", usuario.getNomeUsuario());
+                usuario.setDataCadastro(rs.getString("DataCadastro"));                
+                logsDao.cadastrarLog("Entrou", usuario.getIdUsuario());
                 jfPrincipal.receberDados(usuario);                
             }else{
                 JOptionPane.showMessageDialog(jfLogin, "Email ou senha incorreta");
