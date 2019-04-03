@@ -45,6 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Login");
 
         btnCadastro.setText("Criar uma conta");
         btnCadastro.addActionListener(new java.awt.event.ActionListener() {

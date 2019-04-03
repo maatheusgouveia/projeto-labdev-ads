@@ -26,20 +26,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         lblBemVindo = new javax.swing.JLabel();
-        btnConfiguracoes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        btn_usuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Principal");
 
         lblBemVindo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         lblBemVindo.setText("Bem Vindo");
-
-        btnConfiguracoes.setText("Menu");
-        btnConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguracoesActionPerformed(evt);
-            }
-        });
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -48,38 +42,62 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btn_usuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btn_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/contactlist_theuser_802.png"))); // NOI18N
+        btn_usuario.setText("Usuário");
+        btn_usuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_usuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnConfiguracoes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 577, Short.MAX_VALUE)
-                .addComponent(btnSair)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSair))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(lblBemVindo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(lblBemVindo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(126, 126, 126)
+                .addComponent(btn_usuario)
+                .addContainerGap(366, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSair)
-                    .addComponent(btnConfiguracoes))
+                .addComponent(btnSair)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblBemVindo)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addGap(101, 101, 101)
+                .addComponent(btn_usuario)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracoesActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        TelaLogin telaLogin = new TelaLogin();
+        LogsDAO logsDao = new LogsDAO();
+        logsDao.cadastrarLog("Saiu", dadosUsuario.getIdUsuario());
+        telaLogin.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btn_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usuarioActionPerformed
+        // TODO add your handling code here:
         if (dadosUsuario.getIdTipoUsuario() == 1) {
             PainelAdministrativo painel = new PainelAdministrativo();
             painel.receberDados(dadosUsuario);
@@ -92,16 +110,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaConfiguracoes.setVisible(true);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_btnConfiguracoesActionPerformed
-
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        TelaLogin telaLogin = new TelaLogin();
-        LogsDAO logsDao = new LogsDAO();
-        logsDao.cadastrarLog("Saiu", dadosUsuario.getIdUsuario());
-        telaLogin.setVisible(true);
-        this.setVisible(false);
         
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btn_usuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,8 +150,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfiguracoes;
     private javax.swing.JButton btnSair;
+    private javax.swing.JButton btn_usuario;
     private javax.swing.JLabel lblBemVindo;
     // End of variables declaration//GEN-END:variables
 }
