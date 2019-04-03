@@ -2,7 +2,7 @@ package view;
 
 
 import controller.UsuarioDAO;
-import view.TelaCadastro;
+import view.TelaCadastroUsuario;
 import javax.swing.JOptionPane;
 
 /*
@@ -130,7 +130,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        TelaCadastro Cadastro = new TelaCadastro();
+        TelaCadastroUsuario Cadastro = new TelaCadastroUsuario();
         this.setVisible(false);
         Cadastro.setVisible(true);
     }//GEN-LAST:event_btnCadastroActionPerformed
