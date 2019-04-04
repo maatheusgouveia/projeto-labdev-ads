@@ -28,6 +28,7 @@ public class PainelAdministrativo extends javax.swing.JFrame {
     public void receberDados(Usuario usuario) {
         LogsDAO logsDao = new LogsDAO();
         logsDao.carregarLogs(tabLogs, this);
+        dadosUsuario = usuario;
         txtEditaEmail.setText(usuario.getEmail());
         txtEditaNomeUsuario.setText(usuario.getNomeUsuario());
         txtDataCadastro.setText(usuario.getDataCadastro());

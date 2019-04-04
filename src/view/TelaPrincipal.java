@@ -12,8 +12,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     public void receberDados(Usuario usuario) {
-        lblBemVindo.setText("Bem vindo, " + usuario.getNomeUsuario());
-        dadosUsuario = usuario;       
+        dadosUsuario = usuario;
+        //lblBemVindo.setText("Bem vindo, " + dadosUsuario.getNomeUsuario());
+        
     }
 
     /**

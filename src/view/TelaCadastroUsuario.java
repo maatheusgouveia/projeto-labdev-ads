@@ -52,7 +52,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         setTitle(" Tela Cadastro Usuario");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel1.setText("Cadastro");
+        jLabel1.setText("Cadastrar Usuario");
 
         btnLogin.setText("Voltar para o login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
