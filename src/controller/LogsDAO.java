@@ -25,7 +25,7 @@ public class LogsDAO {
     public void carregarLogs(JTable tabLogs, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT NomeUsuario, Acao, DataHora FROM Logs INNER JOIN Usuarios ON Logs.idUsuario = Usuarios.idUsuario";
+            sql = "SELECT NomeUsuario, Acao, DATE(DataHora) AS Data, TIME(DataHora) AS Hora FROM Logs INNER JOIN Usuarios ON Logs.idUsuario = Usuarios.idUsuario";
             pst = con.prepareStatement(sql);            
             rs=pst.executeQuery();
             tabLogs.setModel(DbUtils.resultSetToTableModel(rs));

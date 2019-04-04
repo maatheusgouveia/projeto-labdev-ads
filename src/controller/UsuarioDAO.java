@@ -68,8 +68,7 @@ public class UsuarioDAO {
             sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = md5(?)";
             pst = con.prepareStatement(sql);            
             pst.setString(1, usuario.getEmail());
-            pst.setString(2, usuario.getSenha());
-            
+            pst.setString(2, usuario.getSenha());            
             if (usuario.getSenha().isEmpty()) {
                 JOptionPane.showMessageDialog(jfUsuario, "Digite sua senha atual para continuar");
                 return;

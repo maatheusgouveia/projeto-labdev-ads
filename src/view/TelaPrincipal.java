@@ -2,6 +2,7 @@ package view;
 
 import controller.LogsDAO;
 import model.Usuario;
+import javax.swing.*;
 
 public class TelaPrincipal extends javax.swing.JFrame {
     
@@ -13,8 +14,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     public void receberDados(Usuario usuario) {
         dadosUsuario = usuario;
-        //lblBemVindo.setText("Bem vindo, " + dadosUsuario.getNomeUsuario());
-        
+        lblBemVindo.setText("Bem vindo, " + dadosUsuario.getNomeUsuario());
+        lblBemVindo.setHorizontalTextPosition(JLabel.CENTER);
+        lblBemVindo.setVerticalTextPosition(JLabel.TOP);
     }
 
     /**
@@ -64,26 +66,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSair)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(btn_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btn_produto)
+                        .addGap(0, 43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSair)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblBemVindo)
-                    .addComponent(btn_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn_produto)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(141, 141, 141)
+                .addComponent(lblBemVindo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(btnSair)
                 .addGap(8, 8, 8)
                 .addComponent(lblBemVindo)
-                .addGap(100, 100, 100)
+                .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_usuario)
                     .addComponent(btn_produto))
