@@ -66,6 +66,7 @@ public class PainelAdministrativo extends javax.swing.JFrame {
         txtNovaSenha = new javax.swing.JPasswordField();
         txtConfirmaNovaSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
+        btnEditarAdm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Administrador");
@@ -129,7 +130,12 @@ public class PainelAdministrativo extends javax.swing.JFrame {
             }
         });
 
+        txtEditaNomeUsuario.setEnabled(false);
+
+        txtEditaEmail.setEnabled(false);
+
         txtDataCadastro.setEditable(false);
+        txtDataCadastro.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Editar meus dados");
@@ -155,64 +161,82 @@ public class PainelAdministrativo extends javax.swing.JFrame {
             }
         });
 
+        txtSenhaAtual.setEnabled(false);
+
+        txtNovaSenha.setEnabled(false);
+
+        txtConfirmaNovaSenha.setEnabled(false);
+
         jLabel5.setText("Redigite sua nova senha:");
+
+        btnEditarAdm.setText("Editar");
+        btnEditarAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarAdmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addComponent(btnVoltar)
-                .addGap(60, 60, 60)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel6)
-                                .addComponent(txtEditaNomeUsuario)
-                                .addComponent(txtEditaEmail)
-                                .addComponent(txtDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEditarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRedefinirCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(106, 106, 106)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnAlterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnRedefinirCamposSenha))
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtSenhaAtual, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNovaSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtConfirmaNovaSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel6)
+                                        .addComponent(txtEditaNomeUsuario)
+                                        .addComponent(txtEditaEmail)
+                                        .addComponent(txtDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnEditarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnRedefinirCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(106, 106, 106)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnAlterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnRedefinirCamposSenha))
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtSenhaAtual, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNovaSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtConfirmaNovaSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(btnEditarAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair)
                     .addComponent(jLabel1)
-                    .addComponent(btnVoltar)
-                    .addComponent(btnSair))
+                    .addComponent(btnVoltar))
                 .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -251,7 +275,9 @@ public class PainelAdministrativo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAlterarSenha)
                             .addComponent(btnRedefinirCamposSenha))))
-                .addGap(41, 41, 41))
+                .addGap(18, 18, 18)
+                .addComponent(btnEditarAdm)
+                .addGap(7, 7, 7))
         );
 
         pack();
@@ -266,6 +292,11 @@ public class PainelAdministrativo extends javax.swing.JFrame {
         usuario.setIdUsuario(dadosUsuario.getIdUsuario());
         JOptionPane.showMessageDialog(null, usuario.getNomeUsuario());
         usuarioDao.alterarDadosUsuario(usuario, this);
+        txtConfirmaNovaSenha.setEnabled(false);
+        txtEditaEmail.setEnabled(false);
+        txtEditaNomeUsuario.setEnabled(false);
+        txtNovaSenha.setEnabled(false);
+        txtSenhaAtual.setEnabled(false);
     }//GEN-LAST:event_btnEditarDadosActionPerformed
 
     private void btnRedefinirCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedefinirCamposActionPerformed
@@ -306,6 +337,15 @@ public class PainelAdministrativo extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnEditarAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAdmActionPerformed
+        txtConfirmaNovaSenha.setEnabled(true);
+        txtEditaEmail.setEnabled(true);
+        txtEditaNomeUsuario.setEnabled(true);
+        txtNovaSenha.setEnabled(true);
+        txtSenhaAtual.setEnabled(true);
+        
+    }//GEN-LAST:event_btnEditarAdmActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -343,6 +383,7 @@ public class PainelAdministrativo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarSenha;
+    private javax.swing.JButton btnEditarAdm;
     private javax.swing.JButton btnEditarDados;
     private javax.swing.JButton btnRedefinirCampos;
     private javax.swing.JButton btnRedefinirCamposSenha;
