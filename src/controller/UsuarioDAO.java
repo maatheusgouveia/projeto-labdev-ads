@@ -97,8 +97,7 @@ public class UsuarioDAO {
     }
 
     //APAGAR
-    public void apagarUsuario(Usuario usuario, JFrame jfConfig) {
-            
+    public void apagarUsuario(Usuario usuario, JFrame jfConfig) {            
         try {
              con = Conexao.conectar();
              sql = "DELETE FROM Usuarios WHERE idUsuario = ?";
