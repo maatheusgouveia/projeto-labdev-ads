@@ -35,6 +35,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(630, 500));
+        setResizable(false);
 
         lblBemVindo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         lblBemVindo.setText("Bem Vindo");
@@ -72,7 +75,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(btn_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(btn_produto)
-                        .addGap(0, 43, Short.MAX_VALUE))
+                        .addGap(0, 49, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSair)))
@@ -93,7 +96,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_usuario)
                     .addComponent(btn_produto))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
