@@ -5,6 +5,9 @@
  */
 package view;
 
+import controller.MarcaDAO;
+import model.Marca;
+
 /**
  *
  * @author matheusgouveia
@@ -32,16 +35,19 @@ public class CadastraMarca extends javax.swing.JFrame {
         txtNomeMarca = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setText("Cadastrar Marcas");
 
         jLabel2.setText("Nome da marca");
 
-        txtNomeMarca.setText("jTextField1");
-
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +79,16 @@ public class CadastraMarca extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Marca marca = new Marca();
+        marca.setNomeMarca(txtNomeMarca.getText());
+        MarcaDAO marcaDao = new MarcaDAO();
+        marcaDao.cadastrarMarca(marca, this, 1);
+        txtNomeMarca.setText("");
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments

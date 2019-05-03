@@ -39,7 +39,7 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         try {
             txtValidoDe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -132,6 +132,7 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtValidoDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValidoDeActionPerformed
