@@ -290,8 +290,7 @@ public class PainelAdministrativo extends javax.swing.JFrame {
         Usuario usuario = new Usuario();
         usuario.setEmail(txtEditaEmail.getText());
         usuario.setNomeUsuario(txtEditaNomeUsuario.getText());
-        usuario.setIdUsuario(dadosUsuario.getIdUsuario());
-        JOptionPane.showMessageDialog(null, usuario.getNomeUsuario());
+        usuario.setIdUsuario(dadosUsuario.getIdUsuario());        
         usuarioDao.alterarDadosUsuario(usuario, this);
         txtConfirmaNovaSenha.setEnabled(false);
         txtEditaEmail.setEnabled(false);
