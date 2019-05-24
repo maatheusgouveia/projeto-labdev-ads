@@ -9,6 +9,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.CmbObjectItem;
 import model.Subcategoria;
 
 /**
@@ -81,7 +82,7 @@ public class SubcategoriaDAO {
     }
     
         public void preencherComboBox (JComboBox cmbCategorias, JFrame jfCadastro) {
-        List strList = new ArrayList();
+        //List strList = new ArrayList();
         
         try {
             con = Conexao.conectar();
@@ -90,12 +91,11 @@ public class SubcategoriaDAO {
             rs = pst.executeQuery();
 
             while(rs.next()){
-                //JOptionPane.showMessageDialog(jfCadastro, rs.getString("NomeCategoria"));
-                strList.add(rs.getString("NomeCategoria"));
+                CmbObjectItem item = new CmbObjectItem();
+                item.setIndex(rs.getInt("idCategoria"));
+                item.setName(rs.getString("NomeCategoria"));
+                cmbCategorias.addItem(item);
             }
-            
-            //cmbCategorias.setModel((ComboBoxModel) strList.toArray());
-            
             
             pst.close();                        
             
