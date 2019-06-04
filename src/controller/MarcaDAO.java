@@ -19,14 +19,14 @@ public class MarcaDAO {
     LogsDAO logsDao = new LogsDAO();
 
     //Métodos
-    public void cadastrarMarca(Marca marca, JFrame jfCadastros, int idUsuario) {
+    public void cadastrarMarca(Marca marca, JFrame jfCadastros, String NomeUsuario) {
         try {
             con = Conexao.conectar();
             sql = "INSERT INTO Marcas (NomeMarca) VALUES(?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, marca.getNomeMarca());
             pst.execute();
-            logsDao.cadastrarLog("Uma marca foi cadastrada", idUsuario);
+            logsDao.cadastrarLog("Uma marca foi cadastrada", NomeUsuario);
             
             JOptionPane.showMessageDialog(jfCadastros, "Cadastrado com Sucesso!");
 

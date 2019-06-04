@@ -19,14 +19,14 @@ public class CategoriaDAO {
     LogsDAO logsDao = new LogsDAO();
 
     //Métodos
-    public void cadastrarCategoria(Categoria categoria, JFrame jfCategoria, int idUsuario) {
+    public void cadastrarCategoria(Categoria categoria, JFrame jfCategoria, String NomeUsuario) {
         try {
             con = Conexao.conectar();
             sql = "INSERT INTO Categorias (NomeCategoria) VALUES(?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, categoria.getNomeCategoria());
             pst.execute();
-            logsDao.cadastrarLog("Uma categoria foi cadastrada", idUsuario);
+            logsDao.cadastrarLog("Uma categoria foi cadastrada", NomeUsuario);
             
             JOptionPane.showMessageDialog(jfCategoria, "Cadastrado com Sucesso!");
 

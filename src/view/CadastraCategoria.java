@@ -7,16 +7,24 @@ package view;
 
 import model.Categoria;
 import controller.CategoriaDAO;
+import model.Usuario;
 
 public class CadastraCategoria extends javax.swing.JFrame {  
     
     CategoriaDAO categoriaDao = new CategoriaDAO();
+    Usuario usuario = new Usuario();
     
     /**
      * Creates new form CadastraCategoria
      */
     public CadastraCategoria() {
         initComponents();
+    }
+    
+    Usuario dadosUsuario;
+    
+    public void receberDados(Usuario usuario) {
+        dadosUsuario = usuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -55,11 +63,11 @@ public class CadastraCategoria extends javax.swing.JFrame {
                         .addGap(100, 100, 100)
                         .addComponent(txtNomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(btnCadastrar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(btnCadastrar)))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,7 +91,7 @@ public class CadastraCategoria extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Categoria categoria = new Categoria();
         categoria.setNomeCategoria(txtNomeCategoria.getText());
-        categoriaDao.cadastrarCategoria(categoria, this, 1);
+        categoriaDao.cadastrarCategoria(categoria, this, dadosUsuario.getNomeUsuario());
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**

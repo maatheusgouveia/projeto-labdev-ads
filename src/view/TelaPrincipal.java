@@ -119,7 +119,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         TelaLogin telaLogin = new TelaLogin();
         LogsDAO logsDao = new LogsDAO();
-        logsDao.cadastrarLog("Saiu", dadosUsuario.getIdUsuario());
+        logsDao.cadastrarLog("Saiu", dadosUsuario.getNomeUsuario());
         telaLogin.setVisible(true);
         this.setVisible(false);
         

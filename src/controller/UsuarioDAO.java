@@ -30,7 +30,6 @@ public class UsuarioDAO {
             pst.setString(2, usuario.getSenha());
             pst.setString(3, usuario.getNomeUsuario());                       
             pst.execute();
-            logsDao.cadastrarLog("Um usuario foi cadastrado", usuario.getIdUsuario());
             
             JOptionPane.showMessageDialog(jfUsuario, "Cadastrado com Sucesso!");
 
@@ -175,7 +174,7 @@ public class UsuarioDAO {
                 usuario.setIdTipoUsuario(rs.getInt("idTipoUsuario"));
                 usuario.setEmail(rs.getString("Email"));
                 usuario.setDataCadastro(rs.getString("DataCadastro"));                
-                logsDao.cadastrarLog("Entrou", usuario.getIdUsuario());
+                logsDao.cadastrarLog("Entrou", usuario.getNomeUsuario());
                 jfPrincipal.receberDados(usuario);                
             }else{
                 JOptionPane.showMessageDialog(jfLogin, "Email ou senha incorreta");

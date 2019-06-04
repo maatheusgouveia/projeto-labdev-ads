@@ -166,15 +166,22 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnCadastroInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroInicialActionPerformed
-        TelaLogin Login = new TelaLogin();
-        Usuario usuario = new Usuario();
-        //JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
-        usuario.setEmail(txtEmail.getText());
-        usuario.setSenha(txtSenha.getText());
-        usuario.setNomeUsuario(txtNomeUsuario.getText());
-        usuarioDao.cadastrarUsuario(usuario, this);
-        Login.setVisible(true);
-        this.setVisible(false);
+        if (!txtEmail.getText().isEmpty() && !txtNomeUsuario.getText().isEmpty() && !txtSenha.getText().isEmpty() &&!txtConfirmaSenha.getText().isEmpty()) {
+            if (txtSenha.getText().equals(txtConfirmaSenha.getText())) {
+                TelaLogin Login = new TelaLogin();
+                Usuario usuario = new Usuario();
+                usuario.setEmail(txtEmail.getText());
+                usuario.setSenha(txtSenha.getText());
+                usuario.setNomeUsuario(txtNomeUsuario.getText());
+                usuarioDao.cadastrarUsuario(usuario, this);
+                Login.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "As duas senhas devem ser iguais");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
     }//GEN-LAST:event_btnCadastroInicialActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

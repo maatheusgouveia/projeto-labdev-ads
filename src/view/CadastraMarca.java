@@ -7,6 +7,7 @@ package view;
 
 import controller.MarcaDAO;
 import model.Marca;
+import model.Usuario;
 
 /**
  *
@@ -19,6 +20,12 @@ public class CadastraMarca extends javax.swing.JFrame {
      */
     public CadastraMarca() {
         initComponents();
+    }
+    
+    Usuario dadosUsuario;
+    
+    public void receberDados(Usuario usuario) {
+        dadosUsuario = usuario;
     }
 
     /**
@@ -86,7 +93,7 @@ public class CadastraMarca extends javax.swing.JFrame {
         Marca marca = new Marca();
         marca.setNomeMarca(txtNomeMarca.getText());
         MarcaDAO marcaDao = new MarcaDAO();
-        marcaDao.cadastrarMarca(marca, this, 1);
+        marcaDao.cadastrarMarca(marca, this, dadosUsuario.getNomeUsuario());
         txtNomeMarca.setText("");
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

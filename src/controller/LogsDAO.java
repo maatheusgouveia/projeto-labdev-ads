@@ -35,13 +35,13 @@ public class LogsDAO {
         }
     }
     
-    public void cadastrarLog(String Acao, int idUsuario) {
+    public void cadastrarLog(String Acao, String NomeUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Logs (Acao, idUsuario) VALUES(? , ?)";
+            sql = "INSERT INTO Logs (Acao, NomeUsuario) VALUES(? , ?)";
             pst = con.prepareStatement(sql);   
             pst.setString(1, Acao);
-            pst.setInt(2, idUsuario);
+            pst.setString(2, NomeUsuario);
             pst.execute();            
 
             Conexao.desconectar();

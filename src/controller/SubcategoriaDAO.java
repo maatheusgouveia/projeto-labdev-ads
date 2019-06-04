@@ -24,14 +24,14 @@ public class SubcategoriaDAO {
     LogsDAO logsDao = new LogsDAO();
 
     //Métodos
-    public void cadastrarSubcategoria(Subcategoria subcategoria, JFrame jfCadastros, int idUsuario) {
+    public void cadastrarSubcategoria(Subcategoria subcategoria, JFrame jfCadastros, String NomeUsuario) {
         try {
             con = Conexao.conectar();
             sql = "INSERT INTO Subcategorias (NomeSucategoria) VALUES(?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, subcategoria.getNomeSubcategoria());
             pst.execute();
-            logsDao.cadastrarLog("Uma subcategoria foi cadastrada", idUsuario);
+            logsDao.cadastrarLog("Uma subcategoria foi cadastrada", NomeUsuario);
             
             JOptionPane.showMessageDialog(jfCadastros, "Cadastrado com Sucesso!");
 
