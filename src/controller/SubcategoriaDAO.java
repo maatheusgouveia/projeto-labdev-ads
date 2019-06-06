@@ -27,9 +27,10 @@ public class SubcategoriaDAO {
     public void cadastrarSubcategoria(Subcategoria subcategoria, JFrame jfCadastros, String NomeUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Subcategorias (NomeSucategoria) VALUES(?)";
+            sql = "INSERT INTO Subcategorias (NomeSubcategoria, idCategoria) VALUES(?, ?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, subcategoria.getNomeSubcategoria());
+            pst.setInt(2, subcategoria.getIdCategoria());
             pst.execute();
             logsDao.cadastrarLog("Uma subcategoria foi cadastrada", NomeUsuario);
             

@@ -51,6 +51,12 @@ public class CadastraMarca extends javax.swing.JFrame {
 
         jLabel2.setText("Nome da marca");
 
+        txtNomeMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeMarcaActionPerformed(evt);
+            }
+        });
+
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,10 +88,7 @@ public class CadastraMarca extends javax.swing.JFrame {
                         .addGap(103, 103, 103)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(51, 51, 51))))
+                            .addComponent(txtNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVoltar)
@@ -94,6 +97,10 @@ public class CadastraMarca extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,6 +145,10 @@ public class CadastraMarca extends javax.swing.JFrame {
         painelProdutos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtNomeMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeMarcaActionPerformed
 
     /**
      * @param args the command line arguments

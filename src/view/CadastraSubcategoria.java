@@ -6,17 +6,16 @@
 package view;
 
 import controller.SubcategoriaDAO;
+import javax.swing.JOptionPane;
+import model.CmbObjectItem;
+import model.Subcategoria;
 import model.Usuario;
 
 /**
  *
  * @author matheusgouveia
  */
-public class CadastraSubcategoria extends javax.swing.JFrame {
-
-    /**
-     * Creates new form CadastraSubcategoria
-     */
+public class CadastraSubcategoria extends javax.swing.JFrame {   
     public CadastraSubcategoria() {
         initComponents();
     }
@@ -37,8 +36,8 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtNomeSubcategoria = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cmbCategorias = new javax.swing.JComboBox<>();
@@ -55,11 +54,22 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setText("Cadastrar Subcategoria");
 
-        jButton1.setText("Cadastrar");
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome da Subcategoria");
 
         jLabel3.setText("Categoria");
+
+        cmbCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoriasActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -94,8 +104,8 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                            .addComponent(txtNomeSubcategoria)
                             .addComponent(cmbCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(138, 138, 138))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -117,13 +127,13 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomeSubcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnCadastrar)
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
@@ -150,6 +160,26 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
         telaLogin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void cmbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCategoriasActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Subcategoria subcategoria;
+        subcategoria = new Subcategoria();
+        subcategoria.setNomeSubcategoria(txtNomeSubcategoria.getText());
+        CmbObjectItem item;
+        item = (CmbObjectItem) cmbCategorias.getSelectedItem();
+        int idCategoria;
+        idCategoria = item.getIndex();
+        subcategoria.setIdCategoria(idCategoria);
+        
+        SubcategoriaDAO subcategoriaDao;
+        subcategoriaDao = new SubcategoriaDAO();
+        subcategoriaDao.cadastrarSubcategoria(subcategoria, this, dadosUsuario.getNomeUsuario());
+        
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,13 +217,13 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbCategorias;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtNomeSubcategoria;
     // End of variables declaration//GEN-END:variables
 }
