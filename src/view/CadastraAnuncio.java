@@ -49,11 +49,11 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtPreco = new javax.swing.JFormattedTextField();
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAnuncios = new javax.swing.JTable();
+        txtPreco = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -102,16 +102,9 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(0, 153, 255));
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("                            Criar anúncios");
+        jLabel5.setText("                                              Criar anúncios");
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
-
-        txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        txtPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecoActionPerformed(evt);
-            }
-        });
 
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
@@ -129,7 +122,7 @@ public class CadastraAnuncio extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAnuncios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -137,10 +130,18 @@ public class CadastraAnuncio extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Produto", "ValidoDe", "ValidoAte", "Preco"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblAnuncios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,28 +155,27 @@ public class CadastraAnuncio extends javax.swing.JFrame {
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(84, 84, 84)
                                 .addComponent(jLabel2))
-                            .addComponent(cmbProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtValidoDe, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtValidoAte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(106, 106, 106))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(93, 93, 93))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(cmbProduto, 0, 235, Short.MAX_VALUE)
+                            .addComponent(txtValidoDe, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(txtValidoAte, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(106, 106, 106))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(93, 93, 93))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPreco))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,9 +206,9 @@ public class CadastraAnuncio extends javax.swing.JFrame {
                         .addComponent(txtValidoAte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCadastrar)
                             .addComponent(btnLimpar)))
@@ -242,11 +242,12 @@ public class CadastraAnuncio extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         AnuncioDAO anuncioDao = new AnuncioDAO();
         anuncioDao.preencherComboBoxProdutos(cmbProduto, this);
+        anuncioDao.carregarAnuncios(tblAnuncios, this, dadosUsuario.getIdUsuario());
     }//GEN-LAST:event_formComponentShown
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         CmbObjectItem item = (CmbObjectItem) cmbProduto.getSelectedItem();
-        if (!txtValidoDe.getText().isEmpty() && !txtValidoAte.getText().isEmpty() && txtPreco.getText().isEmpty()) {
+        if (!txtValidoDe.getText().isEmpty() && !txtValidoAte.getText().isEmpty() && !txtPreco.getText().isEmpty()) {
             Anuncio anuncio = new Anuncio();
             anuncio.setIdProduto(item.getIndex());
             anuncio.setPreco(Float.parseFloat(txtPreco.getText()));
@@ -255,14 +256,11 @@ public class CadastraAnuncio extends javax.swing.JFrame {
             anuncio.setValidoAte(txtValidoAte.getText());
             AnuncioDAO anuncioDao = new AnuncioDAO();
             anuncioDao.cadastrarAnuncio(anuncio, this, dadosUsuario.getNomeUsuario());
+            anuncioDao.carregarAnuncios(tblAnuncios, this, dadosUsuario.getIdUsuario());
         } else {
             JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,8 +309,8 @@ public class CadastraAnuncio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JFormattedTextField txtPreco;
+    private javax.swing.JTable tblAnuncios;
+    private javax.swing.JTextField txtPreco;
     private javax.swing.JFormattedTextField txtValidoAte;
     private javax.swing.JFormattedTextField txtValidoDe;
     // End of variables declaration//GEN-END:variables

@@ -39,10 +39,15 @@ public class CadastraCategoria extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCategorias = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 255));
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -77,18 +82,26 @@ public class CadastraCategoria extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idCategoria", "NomeCategoria"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblCategorias);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,6 +164,7 @@ public class CadastraCategoria extends javax.swing.JFrame {
             Categoria categoria = new Categoria();
             categoria.setNomeCategoria(txtNomeCategoria.getText());
             categoriaDao.cadastrarCategoria(categoria, this, dadosUsuario.getNomeUsuario());
+            categoriaDao.carregarCategorias(tblCategorias, this);
         } else {
             JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
         }
@@ -170,6 +184,11 @@ public class CadastraCategoria extends javax.swing.JFrame {
         painelProdutos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        CategoriaDAO categoriaDao = new CategoriaDAO();
+        categoriaDao.carregarCategorias(tblCategorias, this);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -213,7 +232,7 @@ public class CadastraCategoria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCategorias;
     private javax.swing.JTextField txtNomeCategoria;
     // End of variables declaration//GEN-END:variables
 }

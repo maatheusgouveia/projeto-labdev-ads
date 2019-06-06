@@ -3,15 +3,18 @@ package controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.CmbObjectItem;
 import model.Produto;
 import model.Subcategoria;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -23,6 +26,19 @@ public class ProdutoDAO {
     PreparedStatement pst;
     ResultSet rs;
     LogsDAO logsDao = new LogsDAO();
+    
+    public void carregarProdutos(JTable tab, JFrame jfPainel) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT NomeProduto AS Produto, NomeCategoria AS Categoria, NomeSubcategoria AS Subcategoria, NomeMarca AS Marca FROM produtos INNER JOIN subcategorias ON produtos.idSubcategoria = subcategorias.idSubcategoria INNER JOIN categorias ON subcategorias.idCategoria = categorias.idCategoria INNER JOIN marcas ON produtos.idMarca = marcas.idMarca";
+            pst = con.prepareStatement(sql);
+            rs=pst.executeQuery();
+            tab.setModel(DbUtils.resultSetToTableModel(rs));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jfPainel, "Erro ao consultar: "+e);
+        }
+    }
 
     //Métodos
     public void cadastrarProduto(Produto produto, JFrame jfCadastros, String NomeUsuario) {

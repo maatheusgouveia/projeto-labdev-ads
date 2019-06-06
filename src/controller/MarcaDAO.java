@@ -3,9 +3,12 @@ package controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.Marca;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -17,6 +20,19 @@ public class MarcaDAO {
     PreparedStatement pst;
     ResultSet rs;
     LogsDAO logsDao = new LogsDAO();
+    
+    public void carregarMarcas(JTable tab, JFrame jfPainel) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT idMarca, NomeMarca FROM Marcas";
+            pst = con.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            tab.setModel(DbUtils.resultSetToTableModel(rs));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jfPainel, "Erro ao consultar: "+e);
+        }
+    }
 
     //Métodos
     public void cadastrarMarca(Marca marca, JFrame jfCadastros, String NomeUsuario) {

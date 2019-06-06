@@ -53,7 +53,7 @@ public class CadastraProduto extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProdutos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -66,7 +66,7 @@ public class CadastraProduto extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 153, 255));
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("                        Cadastrar produtos");
+        jLabel1.setText("                                     Cadastrar produtos");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setOpaque(true);
 
@@ -116,7 +116,7 @@ public class CadastraProduto extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,10 +124,18 @@ public class CadastraProduto extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Produto", "Categoria", "Subcategoria", "Marca"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblProdutos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +244,7 @@ public class CadastraProduto extends javax.swing.JFrame {
         ProdutoDAO produtoDao = new ProdutoDAO();
         produtoDao.preencherComboBoxCategorias(cmbCategorias, this);
         produtoDao.preencherComboBoxMarcas(cmbMarcas, this);
+        produtoDao.carregarProdutos(tblProdutos, this);
     }//GEN-LAST:event_formComponentShown
 
     private void cmbCategoriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCategoriasItemStateChanged
@@ -255,6 +264,7 @@ public class CadastraProduto extends javax.swing.JFrame {
                 produto.setIdSubcategoria(itemSubCategoria.getIndex());
                 produto.setIdMarca(itemMarca.getIndex());
                 produtoDao.cadastrarProduto(produto, this, dadosUsuario.getNomeUsuario());
+                produtoDao.carregarProdutos(tblProdutos, this);
             } else {
                 JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
             }
@@ -312,7 +322,7 @@ public class CadastraProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblProdutos;
     private javax.swing.JTextField txtNomeProduto;
     // End of variables declaration//GEN-END:variables
 }

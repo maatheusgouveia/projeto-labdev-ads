@@ -3,15 +3,18 @@ package controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.Anuncio;
 import model.CmbObjectItem;
 import model.Subcategoria;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -23,12 +26,26 @@ public class AnuncioDAO {
     PreparedStatement pst;
     ResultSet rs;
     LogsDAO logsDao = new LogsDAO();
+    
+    public void carregarAnuncios(JTable tab, JFrame jfPainel, int idUsuario) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT NomeProduto AS Produto, ValidoDe, ValidoAte, Preco FROM anuncios INNER JOIN produtos ON anuncios.idProduto = produtos.idProduto WHERE anuncios.idUsuario = ?";
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, idUsuario);
+            rs=pst.executeQuery();
+            tab.setModel(DbUtils.resultSetToTableModel(rs));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jfPainel, "Erro ao consultar: "+e);
+        }
+    }
 
     //Métodos
     public void cadastrarAnuncio(Anuncio anuncio, JFrame jfCadastros, String NomeUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Produtos (idProduto, idUsuario, ValidoDe, ValidoAte, Preco) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO Anuncios (idProduto, idUsuario, ValidoDe, ValidoAte, Preco) VALUES(?, ?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
             pst.setInt(1, anuncio.getIdProduto());
             pst.setInt(2, anuncio.getIdUsuario());

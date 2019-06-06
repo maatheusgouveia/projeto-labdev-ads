@@ -3,14 +3,17 @@ package controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.CmbObjectItem;
 import model.Subcategoria;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -22,6 +25,19 @@ public class SubcategoriaDAO {
     PreparedStatement pst;
     ResultSet rs;
     LogsDAO logsDao = new LogsDAO();
+    
+    public void carregarSubcategorias(JTable tab, JFrame jfPainel) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT idSubcategoria, NomeSubcategoria, NomeCategoria FROM Subcategorias INNER JOIN Categorias ON Categorias.idCategoria = Subcategorias.idCategoria";
+            pst = con.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            tab.setModel(DbUtils.resultSetToTableModel(rs));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jfPainel, "Erro ao consultar: "+e);
+        }
+    }
 
     //Métodos
     public void cadastrarSubcategoria(Subcategoria subcategoria, JFrame jfCadastros, String NomeUsuario) {

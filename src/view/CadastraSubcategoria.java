@@ -44,7 +44,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSubcategorias = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -57,7 +57,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 153, 255));
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("                    Cadastrar Subcategoria");
+        jLabel1.setText("                                Cadastrar Subcategoria");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setOpaque(true);
 
@@ -95,18 +95,26 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSubcategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idSubcategoria", "NomeCategoria", "NomeSubcategoria"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblSubcategorias);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,6 +185,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         SubcategoriaDAO subcategoriaDao = new SubcategoriaDAO();
         subcategoriaDao.preencherComboBox(cmbCategorias, this);
+        subcategoriaDao.carregarSubcategorias(tblSubcategorias, this);
     }//GEN-LAST:event_formComponentShown
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -212,6 +221,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
             SubcategoriaDAO subcategoriaDao;
             subcategoriaDao = new SubcategoriaDAO();
             subcategoriaDao.cadastrarSubcategoria(subcategoria, this, dadosUsuario.getNomeUsuario());
+            subcategoriaDao.carregarSubcategorias(tblSubcategorias, this);
         } else {
             JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
         }
@@ -262,7 +272,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblSubcategorias;
     private javax.swing.JTextField txtNomeSubcategoria;
     // End of variables declaration//GEN-END:variables
 }
