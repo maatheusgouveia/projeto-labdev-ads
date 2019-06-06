@@ -226,15 +226,21 @@ public class CadastraProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbCategoriasItemStateChanged
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if (!txtNomeProduto.getText().isEmpty()) {
-            ProdutoDAO produtoDao = new ProdutoDAO();
-            Produto produto = new Produto();
-            produto.setNomeProduto(txtNomeProduto.getText());
-            CmbObjectItem itemSubCategoria = (CmbObjectItem) cmbSubcategorias.getSelectedItem();
-            produto.setIdSubcategoria(itemSubCategoria.getIndex());
-            CmbObjectItem itemMarca = (CmbObjectItem) cmbSubcategorias.getSelectedItem();
-            produto.setIdMarca(itemMarca.getIndex());
-            produtoDao.cadastrarProduto(produto, this, dadosUsuario.getNomeUsuario());
+        CmbObjectItem itemSubCategoria = (CmbObjectItem) cmbSubcategorias.getSelectedItem();
+        CmbObjectItem itemMarca = (CmbObjectItem) cmbSubcategorias.getSelectedItem();
+        try{
+            if (!txtNomeProduto.getText().isEmpty() || itemSubCategoria.getIndex() < 0 || itemMarca.getIndex() < 0) {
+                ProdutoDAO produtoDao = new ProdutoDAO();
+                Produto produto = new Produto();
+                produto.setNomeProduto(txtNomeProduto.getText());
+                produto.setIdSubcategoria(itemSubCategoria.getIndex());
+                produto.setIdMarca(itemMarca.getIndex());
+                produtoDao.cadastrarProduto(produto, this, dadosUsuario.getNomeUsuario());
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

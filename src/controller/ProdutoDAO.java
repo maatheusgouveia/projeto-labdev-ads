@@ -110,7 +110,7 @@ public class ProdutoDAO {
         
     public void preencherComboBoxSubcategorias (JComboBox cmbCategorias, JFrame jfCadastro, int idCategoria) {
         //List strList = new ArrayList();
-        
+        cmbCategorias.removeAllItems();
         try {
             con = Conexao.conectar();
             sql = "SELECT * FROM Subcategorias WHERE idCategoria = ?";

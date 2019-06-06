@@ -6,6 +6,7 @@
 package view;
 
 import controller.MarcaDAO;
+import javax.swing.JOptionPane;
 import model.Marca;
 import model.Usuario;
 
@@ -135,11 +136,15 @@ public class CadastraMarca extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Marca marca = new Marca();
-        marca.setNomeMarca(txtNomeMarca.getText());
-        MarcaDAO marcaDao = new MarcaDAO();
-        marcaDao.cadastrarMarca(marca, this, dadosUsuario.getNomeUsuario());
-        txtNomeMarca.setText("");
+        if (!txtNomeMarca.getText().isEmpty()) {    
+            Marca marca = new Marca();
+            marca.setNomeMarca(txtNomeMarca.getText());
+            MarcaDAO marcaDao = new MarcaDAO();
+            marcaDao.cadastrarMarca(marca, this, dadosUsuario.getNomeUsuario());
+            txtNomeMarca.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

@@ -7,6 +7,7 @@ package view;
 
 import model.Categoria;
 import controller.CategoriaDAO;
+import javax.swing.JOptionPane;
 import model.Usuario;
 
 public class CadastraCategoria extends javax.swing.JFrame {  
@@ -123,9 +124,13 @@ public class CadastraCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Categoria categoria = new Categoria();
-        categoria.setNomeCategoria(txtNomeCategoria.getText());
-        categoriaDao.cadastrarCategoria(categoria, this, dadosUsuario.getNomeUsuario());
+        if (!txtNomeCategoria.getText().isEmpty()) {
+            Categoria categoria = new Categoria();
+            categoria.setNomeCategoria(txtNomeCategoria.getText());
+            categoriaDao.cadastrarCategoria(categoria, this, dadosUsuario.getNomeUsuario());
+        } else {
+            JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

@@ -5,6 +5,10 @@
  */
 package view;
 
+import controller.AnuncioDAO;
+import javax.swing.JOptionPane;
+import model.Anuncio;
+import model.CmbObjectItem;
 import model.Usuario;
 
 /**
@@ -36,7 +40,7 @@ public class CadastraAnuncio extends javax.swing.JFrame {
     private void initComponents() {
 
         txtValidoDe = new javax.swing.JFormattedTextField();
-        cmbProduto = new javax.swing.JComboBox<String>();
+        cmbProduto = new javax.swing.JComboBox<>();
         txtValidoAte = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,12 +49,17 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtPreco = new javax.swing.JFormattedTextField();
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         try {
             txtValidoDe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -62,8 +71,6 @@ public class CadastraAnuncio extends javax.swing.JFrame {
                 txtValidoDeActionPerformed(evt);
             }
         });
-
-        cmbProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         try {
             txtValidoAte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -81,6 +88,11 @@ public class CadastraAnuncio extends javax.swing.JFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
@@ -92,7 +104,12 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("R$####.##"))));
+        txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecoActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
@@ -144,10 +161,12 @@ public class CadastraAnuncio extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(63, 63, 63)
                                 .addComponent(cmbProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPreco))))
+                .addGap(72, 72, 72)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -173,12 +192,12 @@ public class CadastraAnuncio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(7, 7, 7)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPreco)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnLimpar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -203,6 +222,31 @@ public class CadastraAnuncio extends javax.swing.JFrame {
         painelProdutos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        AnuncioDAO anuncioDao = new AnuncioDAO();
+        anuncioDao.preencherComboBoxProdutos(cmbProduto, this);
+    }//GEN-LAST:event_formComponentShown
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        CmbObjectItem item = (CmbObjectItem) cmbProduto.getSelectedItem();
+        if (!txtValidoDe.getText().isEmpty() && !txtValidoAte.getText().isEmpty() && txtPreco.getText().isEmpty()) {
+            Anuncio anuncio = new Anuncio();
+            anuncio.setIdProduto(item.getIndex());
+            anuncio.setPreco(Float.parseFloat(txtPreco.getText()));
+            anuncio.setIdUsuario(dadosUsuario.getIdUsuario());
+            anuncio.setValidoDe(txtValidoDe.getText());
+            anuncio.setValidoAte(txtValidoAte.getText());
+            AnuncioDAO anuncioDao = new AnuncioDAO();
+            anuncioDao.cadastrarAnuncio(anuncio, this, dadosUsuario.getNomeUsuario());
+        } else {
+            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,12 +289,12 @@ public class CadastraAnuncio extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbProduto;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JFormattedTextField txtPreco;
     private javax.swing.JFormattedTextField txtValidoAte;
     private javax.swing.JFormattedTextField txtValidoDe;
     // End of variables declaration//GEN-END:variables

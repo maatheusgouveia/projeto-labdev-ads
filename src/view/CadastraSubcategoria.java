@@ -40,7 +40,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cmbCategorias = new javax.swing.JComboBox<String>();
+        cmbCategorias = new javax.swing.JComboBox<>();
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
@@ -106,18 +106,12 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(222, 222, 222)
-                                    .addComponent(jLabel2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(158, 158, 158)
-                                    .addComponent(txtNomeSubcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNomeSubcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(246, 246, 246)
                                 .addComponent(jLabel3))
@@ -126,6 +120,10 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
                                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +133,7 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
                     .addComponent(btnSair))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNomeSubcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,18 +175,22 @@ public class CadastraSubcategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbCategoriasActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Subcategoria subcategoria;
-        subcategoria = new Subcategoria();
-        subcategoria.setNomeSubcategoria(txtNomeSubcategoria.getText());
-        CmbObjectItem item;
-        item = (CmbObjectItem) cmbCategorias.getSelectedItem();
-        int idCategoria;
-        idCategoria = item.getIndex();
-        subcategoria.setIdCategoria(idCategoria);
-        
-        SubcategoriaDAO subcategoriaDao;
-        subcategoriaDao = new SubcategoriaDAO();
-        subcategoriaDao.cadastrarSubcategoria(subcategoria, this, dadosUsuario.getNomeUsuario());
+        if (!txtNomeSubcategoria.getText().isEmpty())     {
+            Subcategoria subcategoria;
+            subcategoria = new Subcategoria();
+            subcategoria.setNomeSubcategoria(txtNomeSubcategoria.getText());
+            CmbObjectItem item;
+            item = (CmbObjectItem) cmbCategorias.getSelectedItem();
+            int idCategoria;
+            idCategoria = item.getIndex();
+            subcategoria.setIdCategoria(idCategoria);
+
+            SubcategoriaDAO subcategoriaDao;
+            subcategoriaDao = new SubcategoriaDAO();
+            subcategoriaDao.cadastrarSubcategoria(subcategoria, this, dadosUsuario.getNomeUsuario());
+        } else {
+            JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
+        }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
