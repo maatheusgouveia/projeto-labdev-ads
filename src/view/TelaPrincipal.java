@@ -32,6 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         btn_usuario = new javax.swing.JButton();
         btn_produto = new javax.swing.JButton();
+        btnCadastros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -45,9 +46,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblBemVindo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblBemVindo.setOpaque(true);
 
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSair.setText("Sair");
-        btnSair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSair.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
@@ -74,6 +74,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCadastros.setText("Cadastros");
+        btnCadastros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,10 +89,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btn_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btn_produto)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(btn_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(btn_produto)))
                         .addGap(0, 46, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -102,7 +112,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_usuario)
                     .addComponent(btn_produto))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(btnCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,6 +146,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_usuarioActionPerformed
+
+    private void btnCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrosActionPerformed
 
     private void btn_produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_produtoActionPerformed
         PainelProdutos painelProdutos = new PainelProdutos();
@@ -179,6 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastros;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btn_produto;
     private javax.swing.JButton btn_usuario;

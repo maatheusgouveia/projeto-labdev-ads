@@ -87,7 +87,7 @@ public class PainelAdministrativo extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Acao", "Data", "Hora"
+                "NomeUsuario", "Acao", "Data", "Hora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -101,18 +101,16 @@ public class PainelAdministrativo extends javax.swing.JFrame {
         tabLogs.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabLogs);
 
-        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnVoltar.setText("Voltar");
-        btnVoltar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnVoltar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
 
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSair.setText("Sair");
-        btnSair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSair.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
@@ -125,18 +123,16 @@ public class PainelAdministrativo extends javax.swing.JFrame {
 
         jLabel6.setText("Usuário desde:");
 
-        btnEditarDados.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnEditarDados.setText("Salvar");
-        btnEditarDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEditarDados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnEditarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarDadosActionPerformed(evt);
             }
         });
 
-        btnRedefinirCampos.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnRedefinirCampos.setText("Redefinir");
-        btnRedefinirCampos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRedefinirCampos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnRedefinirCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRedefinirCamposActionPerformed(evt);
@@ -160,18 +156,16 @@ public class PainelAdministrativo extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Alterar minha senha");
 
-        btnAlterarSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnAlterarSenha.setText("Salvar");
-        btnAlterarSenha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAlterarSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarSenhaActionPerformed(evt);
             }
         });
 
-        btnRedefinirCamposSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnRedefinirCamposSenha.setText("Redefinir");
-        btnRedefinirCamposSenha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRedefinirCamposSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnRedefinirCamposSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRedefinirCamposSenhaActionPerformed(evt);
@@ -186,9 +180,8 @@ public class PainelAdministrativo extends javax.swing.JFrame {
 
         jLabel5.setText("Redigite sua nova senha:");
 
-        btnEditarAdm.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnEditarAdm.setText("Editar");
-        btnEditarAdm.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEditarAdm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
         btnEditarAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarAdmActionPerformed(evt);
@@ -255,7 +248,7 @@ public class PainelAdministrativo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair)
                     .addComponent(btnVoltar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
