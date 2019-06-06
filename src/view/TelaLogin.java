@@ -49,8 +49,9 @@ public class TelaLogin extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(540, 330));
         setResizable(false);
 
+        btnCadastro.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnCadastro.setText("Criar uma conta");
-        btnCadastro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        btnCadastro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroActionPerformed(evt);
@@ -66,20 +67,24 @@ public class TelaLogin extends javax.swing.JFrame {
 
         txtSenha.setToolTipText("");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Email");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Senha");
 
+        btnEntrar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnEntrar.setText("Entrar");
-        btnEntrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        btnEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
         });
 
+        btnLimpar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpar.setText("Limpar");
-        btnLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        btnLimpar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -131,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(btnLimpar))
                 .addGap(38, 38, 38)
                 .addComponent(btnCadastro)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
