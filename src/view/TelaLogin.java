@@ -147,7 +147,12 @@ public class TelaLogin extends javax.swing.JFrame {
         if (txtEmail.getText().isEmpty() || txtSenha.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
-            usuarioDao.login(txtEmail, txtSenha, this, telaPrincipal);
+            int validacao = txtEmail.getText().indexOf("@");
+            if (validacao >= 0) {
+                usuarioDao.login(txtEmail, txtSenha, this, telaPrincipal);
+            } else {
+                JOptionPane.showMessageDialog(null, "Digite um email válido");
+            }
         }
         
     }//GEN-LAST:event_btnEntrarActionPerformed

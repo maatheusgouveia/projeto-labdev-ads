@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.JOptionPane;
+
 public class Usuario {
     //Atributos
 
@@ -63,7 +65,12 @@ public class Usuario {
      * @param Email the Email to set
      */
     public void setEmail(String Email) {
-        this.Email = Email;
+        int validacao = Email.indexOf("@");
+        if (validacao >= 0) {
+            this.Email = Email;
+        } else {
+            JOptionPane.showMessageDialog(null, "Digite um email válido");
+        }
     }
 
     /**

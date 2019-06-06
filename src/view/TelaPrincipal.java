@@ -64,6 +64,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btn_produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/warehause_products_safety_5996.png"))); // NOI18N
         btn_produto.setText("Produtos");
         btn_produto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_produto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_produtoActionPerformed(evt);
+            }
+        });
 
         btnCadastros.setText("Cadastros");
         btnCadastros.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +150,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrosActionPerformed
+
+    private void btn_produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_produtoActionPerformed
+        PainelProdutos painelProdutos = new PainelProdutos();
+        painelProdutos.receberDados(dadosUsuario);
+        painelProdutos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_produtoActionPerformed
 
     /**
      * @param args the command line arguments

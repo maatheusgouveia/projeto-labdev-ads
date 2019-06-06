@@ -170,12 +170,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             if (txtSenha.getText().equals(txtConfirmaSenha.getText())) {
                 TelaLogin Login = new TelaLogin();
                 Usuario usuario = new Usuario();
-                usuario.setEmail(txtEmail.getText());
-                usuario.setSenha(txtSenha.getText());
-                usuario.setNomeUsuario(txtNomeUsuario.getText());
-                usuarioDao.cadastrarUsuario(usuario, this);
-                Login.setVisible(true);
-                this.setVisible(false);
+                int validacao = txtEmail.getText().indexOf("@");
+                if (validacao >= 0) {
+                    usuario.setEmail(txtEmail.getText());
+                    usuario.setSenha(txtSenha.getText());
+                    usuario.setNomeUsuario(txtNomeUsuario.getText());
+                    usuarioDao.cadastrarUsuario(usuario, this);
+                    Login.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Digite um email válido");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "As duas senhas devem ser iguais");
             }
