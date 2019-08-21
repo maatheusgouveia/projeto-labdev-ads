@@ -35,11 +35,7 @@ public class PainelProdutos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAnuncios = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
-        btnMarcas = new javax.swing.JButton();
-        btnCategorias = new javax.swing.JButton();
-        btnSubcategorias = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
@@ -47,48 +43,12 @@ public class PainelProdutos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        btnAnuncios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnAnuncios.setText("Anúncios");
-        btnAnuncios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAnuncios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnunciosActionPerformed(evt);
-            }
-        });
-
         btnProdutos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnProdutos.setText("Produtos");
         btnProdutos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProdutosActionPerformed(evt);
-            }
-        });
-
-        btnMarcas.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnMarcas.setText("Marcas");
-        btnMarcas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnMarcas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMarcasActionPerformed(evt);
-            }
-        });
-
-        btnCategorias.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnCategorias.setText("Categorias");
-        btnCategorias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCategoriasActionPerformed(evt);
-            }
-        });
-
-        btnSubcategorias.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnSubcategorias.setText("Subcategorias");
-        btnSubcategorias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSubcategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubcategoriasActionPerformed(evt);
             }
         });
 
@@ -119,13 +79,7 @@ public class PainelProdutos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSubcategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,11 +88,9 @@ public class PainelProdutos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAnuncios, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addGap(196, 196, 196)
                         .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(btnMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,28 +102,13 @@ public class PainelProdutos extends javax.swing.JFrame {
                     .addComponent(btnVoltar)
                     .addComponent(btnSair))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnuncios)
-                    .addComponent(btnProdutos)
-                    .addComponent(btnMarcas))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubcategorias)
-                    .addComponent(btnCategorias))
-                .addGap(83, 83, 83))
+                .addComponent(btnProdutos)
+                .addGap(149, 149, 149))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAnunciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnunciosActionPerformed
-        CadastraAnuncio anuncio;
-        anuncio = new CadastraAnuncio();
-        anuncio.receberDados(dadosUsuario);
-        anuncio.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAnunciosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         TelaLogin telaLogin;
@@ -195,30 +132,6 @@ public class PainelProdutos extends javax.swing.JFrame {
         produto.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnProdutosActionPerformed
-
-    private void btnMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarcasActionPerformed
-        CadastraMarca marca;
-        marca = new CadastraMarca();
-        marca.receberDados(dadosUsuario);
-        marca.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnMarcasActionPerformed
-
-    private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
-        CadastraCategoria categoria;
-        categoria = new CadastraCategoria();
-        categoria.receberDados(dadosUsuario);
-        categoria.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCategoriasActionPerformed
-
-    private void btnSubcategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubcategoriasActionPerformed
-        CadastraSubcategoria subcategoria;
-        subcategoria = new CadastraSubcategoria();
-        subcategoria.receberDados(dadosUsuario);
-        subcategoria.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnSubcategoriasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,12 +170,8 @@ public class PainelProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnuncios;
-    private javax.swing.JButton btnCategorias;
-    private javax.swing.JButton btnMarcas;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton btnSubcategorias;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
