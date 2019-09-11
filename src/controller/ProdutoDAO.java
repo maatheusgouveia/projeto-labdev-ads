@@ -24,7 +24,7 @@ public class ProdutoDAO {
     public void carregarProdutos(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT NomeProduto AS Produto, NomeCategoria AS Categoria, NomeSubcategoria AS Subcategoria, NomeMarca AS Marca FROM produtos INNER JOIN subcategorias ON produtos.idSubcategoria = subcategorias.idSubcategoria INNER JOIN categorias ON subcategorias.idCategoria = categorias.idCategoria INNER JOIN marcas ON produtos.idMarca = marcas.idMarca";
+            sql = "SELECT NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco FROM produtos";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             tab.setModel(DbUtils.resultSetToTableModel(rs));
@@ -38,7 +38,7 @@ public class ProdutoDAO {
     public void cadastrarProduto(Produto produto, JFrame jfCadastros, String NomeUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Produtos (NomeProduto, idSubcategoria, idMarca) VALUES(?, ?, ?)";
+            sql = "INSERT INTO Produtos (NomeProduto, DescricaoPro, idMarca) VALUES(?, ?, ?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, produto.getNomeProduto());
             pst.setInt(2, produto.getIdSubcategoria());
