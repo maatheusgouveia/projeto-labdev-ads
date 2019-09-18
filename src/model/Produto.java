@@ -6,10 +6,11 @@ package model;
  */
 public class Produto {
     private int idProduto;
-    private int idMarca;
-    private int idSubcategoria;
     private String NomeProduto;
-
+    private Float PrecoProduto;
+    private int EstoqueProduto;
+    private String DescricaoProduto;
+    
     /**
      * @return the idProduto
      */
@@ -25,34 +26,6 @@ public class Produto {
     }
 
     /**
-     * @return the idMarca
-     */
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    /**
-     * @param idMarca the idMarca to set
-     */
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
-    }
-
-    /**
-     * @return the idSubcategoria
-     */
-    public int getIdSubcategoria() {
-        return idSubcategoria;
-    }
-
-    /**
-     * @param idSubcategoria the idSubcategoria to set
-     */
-    public void setIdSubcategoria(int idSubcategoria) {
-        this.idSubcategoria = idSubcategoria;
-    }
-
-    /**
      * @return the NomeProduto
      */
     public String getNomeProduto() {
@@ -64,5 +37,47 @@ public class Produto {
      */
     public void setNomeProduto(String NomeProduto) {
         this.NomeProduto = NomeProduto;
+    }
+
+    /**
+     * @return the PrecoProduto
+     */
+    public Float getPrecoProduto() {
+        return PrecoProduto;
+    }
+
+    /**
+     * @param PrecoProduto the PrecoProduto to set
+     */
+    public void setPrecoProduto(Float PrecoProduto) {
+        this.PrecoProduto = PrecoProduto;
+    }
+
+    /**
+     * @return the EstoqueProduto
+     */
+    public int getEstoqueProduto() {
+        return EstoqueProduto;
+    }
+
+    /**
+     * @param EstoqueProduto the EstoqueProduto to set
+     */
+    public void setEstoqueProduto(int EstoqueProduto) {
+        this.EstoqueProduto = EstoqueProduto;
+    }
+ 
+    /**
+     * @return the DescricaoProduto
+     */
+    public String getDescricaoProduto() {
+        return DescricaoProduto;
+    }
+
+    /**
+     * @param DescricaoProduto the EstoqueProduto to set
+     */
+    public void setDescricaoProduto(String DescricaoProduto) {
+        this.DescricaoProduto = DescricaoProduto;
     }
 }

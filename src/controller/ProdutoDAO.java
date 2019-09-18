@@ -24,7 +24,7 @@ public class ProdutoDAO {
     public void carregarProdutos(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco FROM produtos";
+            sql = "SELECT NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, EstoqueProduto AS Estoque FROM produtos";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             tab.setModel(DbUtils.resultSetToTableModel(rs));
@@ -38,11 +38,12 @@ public class ProdutoDAO {
     public void cadastrarProduto(Produto produto, JFrame jfCadastros, String NomeUsuario) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Produtos (NomeProduto, DescricaoPro, idMarca) VALUES(?, ?, ?)";
+            sql = "INSERT INTO Produtos (NomeProduto, DescricaoProduto, PrecoProduto, EstoqueProduto) VALUES(?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, produto.getNomeProduto());
-            pst.setInt(2, produto.getIdSubcategoria());
-            pst.setInt(3, produto.getIdMarca());
+            pst.setString(2, produto.getDescricaoProduto());
+            pst.setFloat(3, produto.getPrecoProduto());
+            pst.setInt(4, produto.getEstoqueProduto());
             pst.execute();
             logsDao.cadastrarLog("Um produto foi cadastrado", NomeUsuario);
             
