@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Venda {
     private int idVenda;
-    private int idUsuario;
+    private int idCliente;
     private String Status;
     private Date DataHora;
     private Date ModificadoEm;
@@ -33,17 +33,17 @@ public class Venda {
     }
 
     /**
-     * @return the idUsuario
+     * @return the idCliente
      */
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getIdCliente() {
+        return idCliente;
     }
 
     /**
-     * @param idUsuario the idUsuario to set
+     * @param idCliente
      */
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     /**

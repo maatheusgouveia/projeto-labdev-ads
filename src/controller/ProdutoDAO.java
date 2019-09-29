@@ -24,7 +24,7 @@ public class ProdutoDAO {
     public void carregarProdutos(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, EstoqueProduto AS Estoque FROM produtos";
+            sql = "SELECT idProduto AS id, NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, EstoqueProduto AS Estoque FROM produtos";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             tab.setModel(DbUtils.resultSetToTableModel(rs));

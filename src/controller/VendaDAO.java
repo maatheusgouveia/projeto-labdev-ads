@@ -24,7 +24,7 @@ public class VendaDAO {
             con = Conexao.conectar();
             sql = "INSERT INTO Vendas (idUsuario, Status) VALUES(?, ?)";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, venda.getIdUsuario());
+            pst.setInt(1, venda.getIdCliente());
             pst.setString(2, venda.getStatus());
             pst.execute();
 
