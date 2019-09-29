@@ -37,6 +37,7 @@ public class ProdutoDAO {
     //Métodos
     public void cadastrarProduto(Produto produto, JFrame jfCadastros, String NomeUsuario) {
         try {
+            JOptionPane.showMessageDialog(null, "aaaaaaaaa");
             con = Conexao.conectar();
             sql = "INSERT INTO Produtos (NomeProduto, DescricaoProduto, PrecoProduto, EstoqueProduto) VALUES(?, ?, ?, ?)";
             pst = con.prepareStatement(sql);

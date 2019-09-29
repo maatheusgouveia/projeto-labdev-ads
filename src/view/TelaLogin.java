@@ -2,8 +2,7 @@ package view;
 
 
 import controller.UsuarioDAO;
-import view.TelaCadastroUsuario;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +21,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        SwingUtilities.getRootPane(this).setDefaultButton(btnEntrar);
     }
     
     UsuarioDAO usuarioDao = new UsuarioDAO();

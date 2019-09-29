@@ -2,7 +2,7 @@ package view;
 
 
 import controller.UsuarioDAO;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import model.Usuario;
 
 /*
@@ -22,6 +22,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
      */
     public TelaCadastroUsuario() {
         initComponents();
+        SwingUtilities.getRootPane(this).setDefaultButton(btnCadastroInicial);
     }
     
     UsuarioDAO usuarioDao = new UsuarioDAO();
