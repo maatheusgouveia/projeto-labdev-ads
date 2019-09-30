@@ -7,6 +7,7 @@ package controller;
 import java.sql.*;
 import javax.swing.*;
 import model.Venda;
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author MATHEUSAUGUSTOGOUVEI
@@ -19,6 +20,36 @@ public class VendaDAO {
     PreparedStatement pst;
     ResultSet rs;
     LogsDAO logsDao = new LogsDAO();
+    
+    public void carregarTotal (JLabel txt, JFrame jf) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT  SUM(PrecoProduto * Quantidade) AS Total " +
+            "FROM Carrinho INNER JOIN Produtos ON Carrinho.idProduto = Produtos.idProduto";
+            pst = con.prepareStatement(sql);
+            rs=pst.executeQuery();
+            rs.next();
+            txt.setText("" + rs.getFloat("Total"));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jf, "Erro ao consultar: "+e);
+        }
+    }
+    
+    public void carregarVendas(JTable tab, JFrame jfPainel) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT idVenda AS id, clientes.NomeCliente AS Nome, clientes.CPF, date(DataHora) AS `Data`, time(DataHora) AS Hora FROM vendas " +
+"INNER JOIN clientes ON vendas.idCliente = clientes.idCliente ;";
+            pst = con.prepareStatement(sql);
+            rs=pst.executeQuery();
+            tab.setModel(DbUtils.resultSetToTableModel(rs));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jfPainel, "Erro ao consultar: "+e);
+        }
+    }
+    
     public void cadastrarVenda(Venda venda, JFrame jf) {
         try {
             con = Conexao.conectar();

@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import model.Carrinho;
 import net.proteanit.sql.DbUtils;
 
@@ -47,7 +46,7 @@ public class CarrinhoDAO {
     public void carregarCarrinho(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT Produtos.idProduto AS id, NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, Quantidade, (PrecoProduto * Quantidade) AS Subtotal " +
+            sql = "SELECT Carrinho.idCarrinho AS id, NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, Quantidade, (PrecoProduto * Quantidade) AS Subtotal " +
             "FROM Carrinho INNER JOIN Produtos ON Carrinho.idProduto = Produtos.idProduto";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -76,13 +75,14 @@ public class CarrinhoDAO {
     
     public void excluirItem (int id) {
         try {
-            con = Conexao.conectar();
-            JOptionPane.showMessageDialog(null, ""+id);
-            sql = "DELETE FROM Carrinho WHERE idProduto = ?";
-            pst=con.prepareStatement(sql); 
-            pst.setInt(0, id);
-            pst.execute();
-            Conexao.desconectar();
+            if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover este produto?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION) == 0){
+                con = Conexao.conectar();
+                sql = "DELETE FROM Carrinho WHERE idCarrinho = ?";
+                pst=con.prepareStatement(sql); 
+                pst.setInt(1, id);
+                pst.execute();
+                Conexao.desconectar();
+            }
      
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null, "Erro ao deletar: "+e);
