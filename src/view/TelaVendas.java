@@ -41,7 +41,7 @@ public class TelaVendas extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_produtos = new javax.swing.JTable();
+        tbl_produtos_consulta = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_clientes = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -71,6 +71,8 @@ public class TelaVendas extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbl_produtos1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -85,7 +87,7 @@ public class TelaVendas extends javax.swing.JFrame {
             }
         });
 
-        tbl_produtos.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_produtos_consulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -104,12 +106,12 @@ public class TelaVendas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_produtos_consulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_produtosMouseClicked(evt);
+                tbl_produtos_consultaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbl_produtos);
+        jScrollPane1.setViewportView(tbl_produtos_consulta);
 
         tbl_clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -254,7 +256,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_concluir)
                     .addComponent(jLabel6)
@@ -284,6 +286,11 @@ public class TelaVendas extends javax.swing.JFrame {
                 "id", "Cliente", "Data", "Hora", "Status"
             }
         ));
+        tbl_vendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_vendasMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tbl_vendas);
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
@@ -315,14 +322,44 @@ public class TelaVendas extends javax.swing.JFrame {
 
         jRadioButton3.setText("Finalizadas");
 
+        tbl_produtos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Produto", "Descricao", "Preco", "Estoque"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_produtos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_produtos1MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tbl_produtos1);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jButton3)
@@ -330,20 +367,20 @@ public class TelaVendas extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addGap(18, 18, 18)
                             .addComponent(jButton1))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButton3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jRadioButton2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jRadioButton1))
-                                .addComponent(jScrollPane5)))))
-                .addContainerGap(161, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jRadioButton3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton1))
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,18 +393,20 @@ public class TelaVendas extends javax.swing.JFrame {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton3))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta", jPanel2);
@@ -392,7 +431,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void tbl_clientesComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tbl_clientesComponentShown
-    
+        
         
     }//GEN-LAST:event_tbl_clientesComponentShown
 
@@ -404,7 +443,7 @@ public class TelaVendas extends javax.swing.JFrame {
         ClienteDAO clienteDao = new ClienteDAO();
         clienteDao.carregarClientes(tbl_clientes, this);
         ProdutoDAO produtoDao = new ProdutoDAO();
-        produtoDao.carregarProdutos(tbl_produtos, this);
+        produtoDao.carregarProdutos(tbl_produtos_consulta, this);
         carrinhoDao.carregarCarrinho(tbl_itens, this);
         carrinhoDao.carregarTotal(lbl_total, this);
     }//GEN-LAST:event_formComponentShown
@@ -415,16 +454,16 @@ public class TelaVendas extends javax.swing.JFrame {
         btn_nome.setText(tbl_clientes.getModel().getValueAt(setar, 0).toString() + " " + tbl_clientes.getModel().getValueAt(setar, 2).toString());
     }//GEN-LAST:event_tbl_clientesMouseClicked
 
-    private void tbl_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_produtosMouseClicked
-        int setar = tbl_produtos.getSelectedRow();
+    private void tbl_produtos_consultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_produtos_consultaMouseClicked
+        int setar = tbl_produtos_consulta.getSelectedRow();
         Carrinho carrinho = new Carrinho();
-        carrinho.setIdProduto(Integer.parseInt(tbl_produtos.getModel().getValueAt(setar, 0).toString()));
+        carrinho.setIdProduto(Integer.parseInt(tbl_produtos_consulta.getModel().getValueAt(setar, 0).toString()));
         if (carrinho.setQuantidade(Integer.parseInt(JOptionPane.showInputDialog("Quantidade")))) {
             carrinhoDao.inserirProduto(carrinho, this);
             carrinhoDao.carregarCarrinho(tbl_itens, this);
             carrinhoDao.carregarTotal(lbl_total, this);
         }
-    }//GEN-LAST:event_tbl_produtosMouseClicked
+    }//GEN-LAST:event_tbl_produtos_consultaMouseClicked
 
     private void tbl_itensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_itensMouseClicked
         int setar = tbl_itens.getSelectedRow();
@@ -440,6 +479,14 @@ public class TelaVendas extends javax.swing.JFrame {
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
         vendaDao.carregarVendas(tbl_vendas, this);
     }//GEN-LAST:event_jPanel2ComponentShown
+
+    private void tbl_produtos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_produtos1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_produtos1MouseClicked
+
+    private void tbl_vendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_vendasMouseClicked
+        
+    }//GEN-LAST:event_tbl_vendasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -499,6 +546,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
@@ -507,7 +555,8 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_total;
     private javax.swing.JTable tbl_clientes;
     private javax.swing.JTable tbl_itens;
-    private javax.swing.JTable tbl_produtos;
+    private javax.swing.JTable tbl_produtos1;
+    private javax.swing.JTable tbl_produtos_consulta;
     private javax.swing.JTable tbl_vendas;
     // End of variables declaration//GEN-END:variables
 }
