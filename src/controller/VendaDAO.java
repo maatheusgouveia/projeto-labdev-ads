@@ -36,6 +36,21 @@ public class VendaDAO {
         }
     }
     
+    public void alterarStatus(JFrame jf, int idVenda, String Status) {
+        try {
+            con = Conexao.conectar();
+            sql = "UPDATE Vendas SET Status = ? WHERE idVenda = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, Status);
+            pst.setInt(2, idVenda);
+            pst.executeUpdate();
+            
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jf, "Erro ao consultar: "+e);
+        }
+    }
+    
     public void carregarVendas(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
