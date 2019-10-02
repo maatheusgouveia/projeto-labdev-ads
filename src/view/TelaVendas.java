@@ -521,7 +521,14 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2ComponentShown
 
     private void tbl_consulta_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_consulta_produtosMouseClicked
-        // TODO add your handling code here:
+        int setarVenda = tbl_consulta_vendas.getSelectedRow();
+        int setarProduto = tbl_consulta_produtos.getSelectedRow();
+        vendaDao.inserirProduto(
+                Integer.parseInt(tbl_consulta_vendas.getModel().getValueAt(setarVenda, 0).toString()),
+                Integer.parseInt(tbl_consulta_produtos.getModel().getValueAt(setarProduto, 0).toString()),
+                Integer.parseInt(JOptionPane.showInputDialog("Quantidade: ")), this);
+        
+        vendaDao.carregarItensVenda(tbl_itens_consulta, Integer.parseInt(tbl_consulta_vendas.getModel().getValueAt(setarVenda, 0).toString()), this);
     }//GEN-LAST:event_tbl_consulta_produtosMouseClicked
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed

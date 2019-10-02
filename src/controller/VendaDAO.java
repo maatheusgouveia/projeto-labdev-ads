@@ -68,6 +68,28 @@ public class VendaDAO {
         }
     }
     
+    public void inserirProduto(int idVenda, int idProduto, int Quantidade, JFrame jf) {
+        try {
+            
+            if (Quantidade >= 0) {
+                con = Conexao.conectar();
+                sql = "INSERT INTO ItensVenda (idVenda, idProduto, Quantidade) VALUES(?, ?, ?)";
+                pst = con.prepareStatement(sql);
+                pst.setInt(1, idVenda);
+                pst.setInt(2, idProduto);
+                pst.setInt(3, Quantidade);
+                pst.execute();
+
+                Conexao.desconectar();
+            } else {
+                JOptionPane.showMessageDialog(null, "A quantidade não pode ser igual ou menor que 0");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jf, "Erro ao Cadastrar: " + e);
+        }
+    }
+    
     public void excluirItem (int idItemVenda) {
         try {
             if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover este produto?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION) == 0){

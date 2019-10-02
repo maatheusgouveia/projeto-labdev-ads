@@ -27,7 +27,7 @@ public class Carrinho {
      * @return 
      */
     public boolean setQuantidade(int Quantidade) {
-        if (Quantidade != 0) {
+        if (Quantidade <= 0) {
             this.Quantidade = Quantidade;
             return true;
         } else {
