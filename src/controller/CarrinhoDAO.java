@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +28,38 @@ public class CarrinhoDAO {
     PreparedStatement pst;
     ResultSet rs;
     LogsDAO logsDao = new LogsDAO();
+    
+    public void salvarItens() {
+        try {
+            con = Conexao.conectar();
+            String sqlId = "SELECT MAX(idVenda) AS idVenda FROM Vendas";
+            pst = con.prepareStatement(sqlId);
+            
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            int id = rs.getInt("idVenda");
+            
+            String sql1 = "SELECT * FROM Carrinho";
+            PreparedStatement pst1 = con.prepareStatement(sql1);
+            ResultSet rs1 = pst1.executeQuery();
+            
+            String sql2 = "INSERT INTO ItensVenda (idProduto, idVenda, Quantidade) VALUES (?, ?, ?)";
+            PreparedStatement pst2 = con.prepareStatement(sql2);
+            
+            while (rs1.next()) {
+                JOptionPane.showMessageDialog(null, id);
+                pst2.setInt(1, rs1.getInt("idProduto"));
+                pst2.setInt(2, id);
+                pst2.setInt(3, rs1.getInt("Quantidade"));
+                pst2.executeUpdate();
+            }
+
+            Conexao.desconectar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar: " + e);
+        }
+    }
     
     public void carregarTotal (JLabel txt, JFrame jf) {
         try {

@@ -23,7 +23,7 @@ public class ClienteDAO {
     public void carregarClientes(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT NomeCliente AS Nome, RG, CPF, DataNascimento AS Nascimento FROM Clientes";
+            sql = "SELECT idCliente AS id, NomeCliente AS Nome, RG, CPF, DataNascimento AS Nascimento FROM Clientes";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             tab.setModel(DbUtils.resultSetToTableModel(rs));

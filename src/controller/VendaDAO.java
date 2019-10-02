@@ -25,7 +25,7 @@ public class VendaDAO {
         try {
             con = Conexao.conectar();
             sql = "SELECT  SUM(PrecoProduto * Quantidade) AS Total " +
-            "FROM Carrinho INNER JOIN Produtos ON Carrinho.idProduto = Produtos.idProduto";
+            "FROM ItensVenda INNER JOIN Produtos ON Venda.idProduto = Produtos.idProduto";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             rs.next();
@@ -39,8 +39,8 @@ public class VendaDAO {
     public void carregarVendas(JTable tab, JFrame jfPainel) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT idVenda AS id, clientes.NomeCliente AS Nome, clientes.CPF, date(DataHora) AS `Data`, time(DataHora) AS Hora FROM vendas " +
-"INNER JOIN clientes ON vendas.idCliente = clientes.idCliente ;";
+            sql = "SELECT idVenda AS id, clientes.NomeCliente AS Nome, clientes.CPF, date(DataHora) AS `Data`, time(DataHora) AS Hora, Status FROM vendas " +
+"INNER JOIN clientes ON vendas.idCliente = clientes.idCliente";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             tab.setModel(DbUtils.resultSetToTableModel(rs));
@@ -50,10 +50,44 @@ public class VendaDAO {
         }
     }
     
+    public void carregarItensVenda(JTable tab, int id, JFrame jf) {
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT ItensVenda.idItemVenda AS id, NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, ItensVenda.Quantidade, \n" +
+                "(PrecoProduto * Quantidade) AS Subtotal\n" +
+                "FROM Vendas INNER JOIN ItensVenda ON Vendas.idVenda = ItensVenda.idVenda\n" +
+                "INNER JOIN Produtos ON ItensVenda.idProduto = Produtos.idProduto\n" +
+                "WHERE Vendas.idVenda = ?";
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            tab.setModel(DbUtils.resultSetToTableModel(rs));
+            Conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(jf, "Erro ao consultar: "+e);
+        }
+    }
+    
+    public void excluirItem (int idItemVenda) {
+        try {
+            if(JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover este produto?", "Atenção", JOptionPane.YES_NO_CANCEL_OPTION) == 0){
+                con = Conexao.conectar();
+                sql = "DELETE FROM ItensVenda WHERE idItemVenda = ?";
+                pst=con.prepareStatement(sql); 
+                pst.setInt(1, idItemVenda);
+                pst.execute();
+                Conexao.desconectar();
+            }
+     
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Erro ao deletar: "+e);
+        }
+    }
+    
     public void cadastrarVenda(Venda venda, JFrame jf) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Vendas (idUsuario, Status) VALUES(?, ?)";
+            sql = "INSERT INTO Vendas (idCliente, Status) VALUES(?, ?)";
             pst = con.prepareStatement(sql);
             pst.setInt(1, venda.getIdCliente());
             pst.setString(2, venda.getStatus());
