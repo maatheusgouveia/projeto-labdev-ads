@@ -154,7 +154,7 @@
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/warehause_products_safety_5996.png"/>
+          <Image iconType="3" name="/imagens/shoppaymentorderbuy-20_icon-icons.com_73877.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Vendas"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -173,7 +173,7 @@
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/contactlist_theuser_802.png"/>
+          <Image iconType="3" name="/imagens/Clients_27015.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Clientes"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

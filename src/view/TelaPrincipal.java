@@ -76,7 +76,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_produto1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btn_produto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/warehause_products_safety_5996.png"))); // NOI18N
+        btn_produto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/shoppaymentorderbuy-20_icon-icons.com_73877.png"))); // NOI18N
         btn_produto1.setText("Vendas");
         btn_produto1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_produto1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +86,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btn_usuario1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btn_usuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/contactlist_theuser_802.png"))); // NOI18N
+        btn_usuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clients_27015.png"))); // NOI18N
         btn_usuario1.setText("Clientes");
         btn_usuario1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_usuario1.addActionListener(new java.awt.event.ActionListener() {
