@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0aa1c5f-9ca1-48c7-bd72-956696f2d8fd">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[bGFiZGV2LnByb2R1dG9zIEFTICw2MiwzOCxkNDMwMDBhNC0wOGQ5LTQ3YWYtYmZhNS04MmZmMDg3
+YmY3YzE7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT labdev.produtos.`NomeProduto`,
+	labdev.produtos.`DescricaoProduto`,
+	labdev.produtos.`PrecoProduto`,
+	labdev.produtos.`EstoqueProduto`
+FROM labdev.produtos]]>
+	</queryString>
+	<field name="NomeProduto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NomeProduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="DescricaoProduto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DescricaoProduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="PrecoProduto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PrecoProduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="EstoqueProduto" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="EstoqueProduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="595" height="79" uuid="7867cbec-6f02-436a-bf38-4f9562c0a80a"/>
+				<textElement textAlignment="Center">
+					<font fontName="aria" size="30"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="0" width="200" height="30" uuid="f5dbb229-317c-48ae-932d-827320e1aa2d"/>
+				<textFieldExpression><![CDATA[$F{NomeProduto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="170" height="30" uuid="1ccfa68b-daa2-4558-aae7-122bffaf5779"/>
+				<textFieldExpression><![CDATA[$F{DescricaoProduto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="0" width="100" height="30" uuid="d4fa0b3e-6b5d-4d01-b6c1-16a63531b9ca"/>
+				<textFieldExpression><![CDATA[$F{PrecoProduto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="125" height="30" uuid="54bcfec1-8450-46ea-924c-3b2a35f38840"/>
+				<textFieldExpression><![CDATA[$F{EstoqueProduto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
