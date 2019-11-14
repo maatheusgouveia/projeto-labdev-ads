@@ -226,7 +226,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Relatorio relatorio = new Relatorio();
-        relatorio.gerarRelatorio("Produtos");
+        relatorio.gerarRelatorio();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
