@@ -100,13 +100,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Relatório de clientes");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Relatório de vendas");
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Relatório de usuários");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Relatório de produtos");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -137,13 +142,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(11, 11, 11)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(56, 56, 56)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(113, 113, 113))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(55, 55, 55)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
@@ -228,6 +233,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Relatorio relatorio = new Relatorio();
         relatorio.gerarRelatorio();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

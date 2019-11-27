@@ -50,18 +50,22 @@ FROM labdev.produtos]]>
 		<band height="67" splitType="Stretch">
 			<staticText>
 				<reportElement x="-20" y="30" width="200" height="30" uuid="40864707-8de5-454b-a4f6-13f69bd39f82"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Produto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="180" y="30" width="170" height="30" uuid="fbd379cb-5584-44a4-844e-68d150428b13"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Descrição]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="350" y="30" width="124" height="30" uuid="919ef9ba-8f2f-4513-8d7c-69131d86fcd2"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Estoque disponível]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="475" y="30" width="100" height="30" uuid="3cbb0bce-6039-49d2-9e1e-f78790e42e19"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Preço]]></text>
 			</staticText>
 		</band>
@@ -70,18 +74,22 @@ FROM labdev.produtos]]>
 		<band height="32" splitType="Stretch">
 			<textField>
 				<reportElement x="-20" y="-3" width="200" height="30" uuid="f5dbb229-317c-48ae-932d-827320e1aa2d"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{NomeProduto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="180" y="-3" width="170" height="30" uuid="1ccfa68b-daa2-4558-aae7-122bffaf5779"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{DescricaoProduto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="-3" width="125" height="30" uuid="54bcfec1-8450-46ea-924c-3b2a35f38840"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{EstoqueProduto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="475" y="-3" width="100" height="30" uuid="d4fa0b3e-6b5d-4d01-b6c1-16a63531b9ca"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{PrecoProduto}]]></textFieldExpression>
 			</textField>
 		</band>
