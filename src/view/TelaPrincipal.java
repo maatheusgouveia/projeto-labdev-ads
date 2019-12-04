@@ -1,6 +1,7 @@
 package view;
 
 import controller.LogsDAO;
+import controller.UsuarioDAO;
 import model.Usuario;
 import javax.swing.*;
 import reports.Relatorio;
@@ -36,7 +37,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btn_produto1 = new javax.swing.JButton();
         btn_usuario1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -101,8 +101,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jButton1.setText("Relatório de clientes");
-
-        jButton2.setText("Relatório de vendas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Relatório de usuários");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -144,9 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(113, 113, 113))
+                .addGap(113, 479, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jButton3)
@@ -169,9 +170,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(btn_cliente)
                     .addComponent(btn_venda))
                 .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_usuario1)
@@ -231,12 +230,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Relatorio relatorio = new Relatorio();
-        relatorio.gerarRelatorio();
+        relatorio.gerarRelatorio("Produtos");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (dadosUsuario.getIdTipoUsuario() == 1) {
+            Relatorio relatorio = new Relatorio();
+            relatorio.gerarRelatorio("Usuarios");
+        } else {
+            JOptionPane.showMessageDialog(null, "Você não tem permissão para visualizar este relatório");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        if (usuarioDao.verificarUsuario(dadosUsuario.getEmail(), JOptionPane.showInputDialog("Digite sua senha para confirmar: "))) {
+            Relatorio relatorio = new Relatorio();
+            relatorio.gerarRelatorio("Clientes");
+        } else {
+            JOptionPane.showMessageDialog(null, "Você não tem permissão para visualizar este relatório");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,7 +295,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_usuario1;
     private javax.swing.JButton btn_venda;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel lblBemVindo;

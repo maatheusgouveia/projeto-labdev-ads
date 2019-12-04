@@ -47,7 +47,6 @@ public class CarrinhoDAO {
             PreparedStatement pst2 = con.prepareStatement(sql2);
             
             while (rs1.next()) {
-                JOptionPane.showMessageDialog(null, id);
                 pst2.setInt(1, rs1.getInt("idProduto"));
                 pst2.setInt(2, id);
                 pst2.setInt(3, rs1.getInt("Quantidade"));

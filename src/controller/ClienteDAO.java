@@ -35,7 +35,7 @@ public class ClienteDAO {
     public void cadastrarCliente(Cliente cliente, JFrame jfCliente) {
         try {
             con = Conexao.conectar();
-            sql = "INSERT INTO Usuarios (NomeCliente, CPF, RG, DataNascimento) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CLientes (NomeCliente, CPF, RG, DataNascimento) VALUES(?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, cliente.getNomeCLiente());
             pst.setString(2, cliente.getCpf());

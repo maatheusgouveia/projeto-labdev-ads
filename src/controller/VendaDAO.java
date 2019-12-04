@@ -68,7 +68,7 @@ public class VendaDAO {
     public void carregarItensVenda(JTable tab, int id, JFrame jf) {
         try {
             con = Conexao.conectar();
-            sql = "SELECT ItensVenda.idItemVenda AS id, NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, ItensVenda.Quantidade, \n" +
+            sql = "SELECT ItensVenda.idVenda AS id, NomeProduto AS Produto, DescricaoProduto AS Descricao, PrecoProduto AS Preco, ItensVenda.Quantidade, \n" +
                 "(PrecoProduto * Quantidade) AS Subtotal\n" +
                 "FROM Vendas INNER JOIN ItensVenda ON Vendas.idVenda = ItensVenda.idVenda\n" +
                 "INNER JOIN Produtos ON ItensVenda.idProduto = Produtos.idProduto\n" +

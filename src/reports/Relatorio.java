@@ -12,10 +12,10 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author mathe
  */
 public class Relatorio {
-    public void gerarRelatorio() {
+    public void gerarRelatorio(String arquivo) {
         Connection con = Conexao.conectar();
         
-        String src = "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\labdev\\src\\reports\\Produtos.jasper";
+        String src = "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\labdev\\src\\reports\\"+arquivo+".jasper";
         
         JasperPrint jasper = null;
         

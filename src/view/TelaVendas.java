@@ -8,6 +8,7 @@ package view;
 import controller.CarrinhoDAO;
 import controller.ClienteDAO;
 import controller.ProdutoDAO;
+import controller.UsuarioDAO;
 import controller.VendaDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -184,14 +185,19 @@ public class TelaVendas extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Cliente:");
 
         btn_nome.setEditable(false);
+        btn_nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Total:");
 
+        lbl_total.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbl_total.setText("0,00");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel9.setText("R$");
 
         jButton4.setText("Voltar");
@@ -248,7 +254,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_concluir)
                     .addComponent(jLabel6)
@@ -522,14 +528,19 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_itens_consultaMouseClicked
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        int setarVenda = tbl_consulta_vendas.getSelectedRow();
-        String status = tbl_consulta_vendas.getModel().getValueAt(setarVenda, 5).toString();
-        if ("Pendente".equals(status)) {
-            JOptionPane.showMessageDialog(null, tbl_consulta_vendas.getModel().getValueAt(setarVenda, 0).toString());
-            vendaDao.alterarStatus(this, Integer.parseInt(tbl_consulta_vendas.getModel().getValueAt(setarVenda, 0).toString()), "Cancelada");
-            vendaDao.carregarVendas(tbl_consulta_vendas, this);
+        UsuarioDAO usuarioDao = new UsuarioDAO();
+        if (usuarioDao.verificarUsuario(dadosUsuario.getEmail(), JOptionPane.showInputDialog("Digite sua senha para confirmar: "))) {
+            int setarVenda = tbl_consulta_vendas.getSelectedRow();
+            String status = tbl_consulta_vendas.getModel().getValueAt(setarVenda, 5).toString();
+            if ("Pendente".equals(status)) {
+                JOptionPane.showMessageDialog(null, tbl_consulta_vendas.getModel().getValueAt(setarVenda, 0).toString());
+                vendaDao.alterarStatus(this, Integer.parseInt(tbl_consulta_vendas.getModel().getValueAt(setarVenda, 0).toString()), "Cancelada");
+                vendaDao.carregarVendas(tbl_consulta_vendas, this);
+            } else {
+                JOptionPane.showMessageDialog(null, "Só é possível cancelar uma venda pendente");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Só é possível cancelar uma venda pendente");
+            JOptionPane.showMessageDialog(null, "Você não tem permissão para alterar o status da venda");
         }
     }//GEN-LAST:event_btn_cancelarActionPerformed
 

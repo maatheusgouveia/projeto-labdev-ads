@@ -21,6 +21,27 @@ public class UsuarioDAO {
     LogsDAO logsDao = new LogsDAO();
 
     //Métodos
+    public boolean verificarUsuario(String email, String senha){
+        try {
+            con = Conexao.conectar();
+            sql = "SELECT * FROM Usuarios WHERE Email = ? AND Senha = md5(?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, email);
+            pst.setString(2, senha);
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar: "+e);
+            return false;
+        }
+    }
+    
     public void cadastrarUsuario(Usuario usuario, JFrame jfUsuario) {
         try {
             con = Conexao.conectar();
